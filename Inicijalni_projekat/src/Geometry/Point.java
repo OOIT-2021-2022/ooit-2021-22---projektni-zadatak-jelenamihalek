@@ -12,7 +12,8 @@ public class Point {
 		double dx=this.x-xPoint2;
 		double dy=this.y-yPoint2;
 		double d=Math.sqrt(dx*dx+dy*dy);
-		return d;}
+		return d;
+		}
 	
 	
 	
@@ -31,6 +32,39 @@ public class Point {
 	{
 		this.y=y;
 	}
+
+
+
+
+
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+
+
+
+
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+
+
+
+
+
+
+	public int getY() {
+		return y;
+	}
+
+
+
+
+
+
 	
 	
 	
