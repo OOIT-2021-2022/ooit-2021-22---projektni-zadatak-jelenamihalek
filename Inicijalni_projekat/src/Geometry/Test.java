@@ -44,7 +44,7 @@ System.out.println(l1.getEndPoint().getY());
 l1.getStartPoint().setX(l1.getEndPoint().getY());
 
 
-l1.getEndPoint().setX(int)(l1.length()-(l1.getStartPoint().getX()+l1.getStartPoint().getY())));
+l1.getEndPoint().setX((int)(l1.length()-(l1.getStartPoint().getX()+l1.getStartPoint().getY())));
 
 
 //r1.setUpperLeftPoint(new Point(p.getX(),p.getY()))

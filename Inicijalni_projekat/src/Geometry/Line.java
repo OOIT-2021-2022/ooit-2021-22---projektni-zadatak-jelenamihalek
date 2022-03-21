@@ -9,7 +9,7 @@ private boolean selected;
 
 public double length()
 {
-	return this.startPoint.distance(this.endPoint.getX()+" "+this.endPoint.getY());
+	return this.startPoint.distance(this.endPoint.getX(),this.endPoint.getY());
      
 }
 
