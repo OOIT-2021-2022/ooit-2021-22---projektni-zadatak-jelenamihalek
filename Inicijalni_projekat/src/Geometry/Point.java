@@ -16,18 +16,16 @@ public class Point {
 		}
 	
 	
-	
-	
-	
-	
 	public int  getX()
 	{
 		return this.x;
 	}
+	
 	public  void setX(int x)
 	{
 		this.x=x;
 	}
+	
 	public void setY(int y)
 	{
 		this.y=y;
@@ -38,20 +36,16 @@ public class Point {
 		return selected;
 	}
 
-
-
-
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-
-
 
 
 	public int getY() {
 		return y;
 	}
 
+	
 
 	//vezba 4
 
