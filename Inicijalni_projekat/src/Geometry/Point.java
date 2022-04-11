@@ -16,6 +16,11 @@ public class Point {
 		}
 	
 	
+	public boolean contains (int x, int y)
+	{
+		return this.distance(x,y)<=2;
+	}
+	
 	public int  getX()
 	{
 		return this.x;
@@ -71,15 +76,15 @@ public class Point {
 	 * r1=r2    prenosi se i vrednost i referenca
 	 * r1==r2 porede se reference, i imace iste vrednosti,uvek true
 	 * ako imamo new onda su dva objekta, dve raylicite refenrece
-	 * equals dal su jednake vrednosti
+	 * equals dal su jednake vrednosti, metoda instance
 	 * overwriting predefinisanje metode
 	 */
 	
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {
 			Point pomocna = (Point) obj;
-			/*downcast objekat pretvaramo u tacku, konvertivanje*/
-			if (this.x == pomocna.x && this.y == pomocna.y)
+			/*downcast objekat pretvaramo u tacku, konvertivanje*/ //poredjenje po vrednosti
+			if (this.x == pomocna.x && this.y == pomocna.y)//ne mora da stoji this
 				return true;
 			else
 				return false;

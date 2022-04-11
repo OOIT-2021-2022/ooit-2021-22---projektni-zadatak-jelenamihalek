@@ -2,8 +2,9 @@ package Geometry;
 
 public class Circle {
 
-	private Point center;
+	protected Point center; //protected da bi sve klase koje nasledjuju mogke da vide
 	private int radius;
+	private boolean selected;
 
 	public Circle() {
 
@@ -19,6 +20,16 @@ public class Circle {
 		this.selected = selected;
 	}
 
+	public boolean contains (int x, int y)
+	{
+		return center.distance(x,y)<=radius;
+	}
+	
+	public boolean contains (Point clickPoint)//click point .getx, 
+	{
+		return center.distance(clickPoint.getX(), clickPoint.getY())<=2;
+	}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Circle) {
 			Circle pomocni = (Circle) obj;
@@ -28,7 +39,7 @@ public class Circle {
 			} else {
 				return false;
 			}
-		} else {
+		} else 
 			return false;
 		}
 
@@ -46,6 +57,15 @@ public class Circle {
 
 	public void setRadius(int radius) {
 		this.radius = radius;
+	}
+
+	
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 
 	public double area() {

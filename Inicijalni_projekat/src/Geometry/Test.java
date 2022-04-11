@@ -98,5 +98,17 @@ Point p6=new Point(10,15);
 Point p7=new Point(10,15);
 System.out.println(p6==p7);
 System.out.println(p6.equals(p7));
-	}
+	
+	
+	//vezbe 5
+	
+	Point clickPoint=new Point (10 ,15);
+	System.out.println(p7.contains(clickPoint.getX(), clickPoint.getY()));
+	
+	Line lin=new Line();
+	System.out.println(lin.contains(clickPoint.getX(), clickPoint.getY()));
+	
+	Donut donut=new Donut(new Point(12,27),20,10,true);
+	
+}
 }

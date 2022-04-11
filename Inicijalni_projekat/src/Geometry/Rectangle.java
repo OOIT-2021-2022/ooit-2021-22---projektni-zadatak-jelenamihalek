@@ -21,7 +21,19 @@ public class Rectangle {
 		this(upperLeftPoint, width, height);
 		this.selected = selected;
 	}
-
+	
+	public boolean contains (int x, int y)
+	{
+		return upperLeftPoint.getX()<=x && upperLeftPoint.getX()+width>=x && 
+				upperLeftPoint.getY()<=y && upperLeftPoint.getY()+height>=y;
+	}
+	
+public boolean containt (Point clickPoint)
+{
+	return upperLeftPoint.getX()<=clickPoint.getX() && upperLeftPoint.getX()+width>=clickPoint.getX() && 
+			upperLeftPoint.getY()<=clickPoint.getY() && upperLeftPoint.getY()+height>=clickPoint.getY();
+}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Rectangle) {
 			Rectangle pomocna = (Rectangle) obj;
