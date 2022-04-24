@@ -4,6 +4,7 @@ public class Circle {
 
 	private Point center;
 	private int radius;
+	private boolean selected;
 
 	public Circle() {
 
@@ -25,11 +26,8 @@ public class Circle {
 			if (this.center.equals(pomocni.center) &&
 					this.radius == pomocni.radius) {
 				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
+			} else 
+				return false;}
 		}
 
 	public Point getCenter() {
