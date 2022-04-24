@@ -19,17 +19,21 @@ public class Circle {
 		this(center, radius);
 		this.selected = selected;
 	}
-
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Circle) {
 			Circle pomocni = (Circle) obj;
-			if (this.center.equals(pomocni.center) &&
-					this.radius == pomocni.radius) {
+			if (this.center.equals(pomocni.center) && this.radius == pomocni.radius) {
 				return true;
-			} else 
-				return false;}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
 		}
+	}
 
+	
 	public Point getCenter() {
 		return this.center;
 	}
