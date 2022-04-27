@@ -1,11 +1,12 @@
 package Geometry;
 
-public class Line {
+import java.awt.Graphics;
+
+public class Line extends Shape{
 
 	private Point startPoint;
 	private Point endPoint;
-	private boolean selected;
-
+	
 	public Line() {
 	}
 
@@ -15,8 +16,12 @@ public class Line {
 	}
 
 	public Line(Point startPoint, Point endPoint, boolean selected) {
-		this(startPoint, endPoint);
-		this.selected = selected;
+		//this(startPoint, endPoint);
+		//this.selected = selected;
+		//setSelected(selected);
+		super(selected); //poziv konstruktora iz nadredjene klase-shape
+		this.startPoint=startPoint;
+		this.endPoint=endPoint;
 	}
 
 	public boolean equals(Object obj) {
@@ -29,10 +34,23 @@ public class Line {
 		} else
 			return false;
 	}
+	
+	public boolean contains (int x, int y)
+	{
+		return this.startPoint.distance(x,y)+this.endPoint.distance(x,y)-length()<=2;
+	}
 
 	public double length() {
 		return this.startPoint.distance(this.endPoint.getX(), this.endPoint.getY());
 
+	}
+	
+	public void draw (Graphics g)
+	{
+		//todo auto-generated method stub
+		g.drawLine(startPoint.getX(),startPoint.getY(),endPoint.getX(),endPoint.getY());
+		//da su x,y protected , ne moye/komnpozicija...
+		
 	}
 
 	public void setStartPoint(Point startPoint)
@@ -53,13 +71,7 @@ public class Line {
 		this.endPoint = endPoint;
 	}
 
-	public boolean isSelected() {
-		return selected;
-	}
 
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
 
 	public String toString() {
 		return startPoint + "-- >" + endPoint;

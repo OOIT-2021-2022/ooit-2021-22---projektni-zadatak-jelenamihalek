@@ -14,7 +14,7 @@ public class Test {
 		System.out.print(p.distance(15, 25));
 	
 	//vezbe3
-	p.setSelected(true);
+ 	p.setSelected(true);
 	
 	
 	Point p1=new Point();
@@ -66,13 +66,12 @@ System.out.println(c1.getCenter().getX());
 		 * pocetne i krajnje tacke prethodno kreirane linije lin (NE duzine). Sve
 		 * objekte kreirati samostalno.
 		 */
-
+/*
 c1.getCenter().setX(c1.getRadius()+(int)(l1.getStartPoint().distance(l1.getEndPoint().getX(), l1.getEndPoint().getY())));
 
 /* Point p=new Point(); d0,0, false
  * public void, ne pise se tip podatka , Point (){};
  */
-
 
 Point p2=new Point(5,5);
 
@@ -98,5 +97,23 @@ Point p6=new Point(10,15);
 Point p7=new Point(10,15);
 System.out.println(p6==p7);
 System.out.println(p6.equals(p7));
-	}
-}
+	
+	
+	//vezbe 5
+	
+	Point clickPoint=new Point (10 ,15);
+	System.out.println(p7.contains(clickPoint.getX(), clickPoint.getY()));
+	
+	Line lin=new Line();
+	System.out.println(lin.contains(clickPoint.getX(), clickPoint.getY()));
+	
+	//Donut donut=new Donut(new Point(12,27),20,10,true);
+	
+	
+	//vezbe 6
+	
+	
+	Shape shape =new Point (10,15);
+	 //System.out.println(shape)
+	
+}}

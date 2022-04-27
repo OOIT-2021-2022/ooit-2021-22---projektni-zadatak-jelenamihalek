@@ -1,10 +1,20 @@
 package Geometry;
 
-public class Point {
+import java.awt.Graphics;
+
+public class Point extends Shape {
 
 	private int  x;
 	private int  y;
-	private boolean selected;
+	
+	
+	public void draw (Graphics g)
+	{
+		//todo auto-generated method stub
+		g.drawLine(x-2, y, x+2, y);
+		g.drawLine(x,y-2,x,y+2);
+		
+	}
 	
 	
 	public double distance (int xPoint2, int yPoint2)
@@ -15,6 +25,11 @@ public class Point {
 		return d;
 		}
 	
+	
+	public boolean contains (int x, int y)
+	{
+		return this.distance(x,y)<=2;
+	}
 	
 	public int  getX()
 	{
@@ -32,13 +47,6 @@ public class Point {
 	}
 
 
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
 
 
 	public int getY() {
@@ -60,7 +68,7 @@ public class Point {
 	{//this.x=x;
 	//this.y=y; 
 		this(x,y);
-	this.selected=selected;	
+	setSelected (selected);	
 	
 	};
 
@@ -71,15 +79,15 @@ public class Point {
 	 * r1=r2    prenosi se i vrednost i referenca
 	 * r1==r2 porede se reference, i imace iste vrednosti,uvek true
 	 * ako imamo new onda su dva objekta, dve raylicite refenrece
-	 * equals dal su jednake vrednosti
+	 * equals dal su jednake vrednosti, metoda instance
 	 * overwriting predefinisanje metode
 	 */
 	
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {
 			Point pomocna = (Point) obj;
-			/*downcast objekat pretvaramo u tacku, konvertivanje*/
-			if (this.x == pomocna.x && this.y == pomocna.y)
+			/*downcast objekat pretvaramo u tacku, konvertivanje*/ //poredjenje po vrednosti
+			if (this.x == pomocna.x && this.y == pomocna.y)//ne mora da stoji this
 				return true;
 			else
 				return false;

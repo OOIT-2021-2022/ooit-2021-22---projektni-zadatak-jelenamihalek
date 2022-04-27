@@ -1,10 +1,12 @@
 package Geometry;
 
-public class Circle {
+import java.awt.Graphics;
 
-	private Point center;
+public class Circle extends Shape {
+
+	protected Point center; //protected da bi sve klase koje nasledjuju mogke da vide
 	private int radius;
-	private boolean selected;
+	
 
 	public Circle() {
 
@@ -17,7 +19,17 @@ public class Circle {
 
 	public Circle(Point center, int radius, boolean selected) {
 		this(center, radius);
-		this.selected = selected;
+		setSelected(selected);
+	}
+
+	public boolean contains (int x, int y)
+	{
+		return center.distance(x,y)<=radius;
+	}
+	
+	public boolean contains (Point clickPoint)//click point .getx, 
+	{
+		return center.distance(clickPoint.getX(), clickPoint.getY())<=2;
 	}
 	
 	public boolean equals(Object obj) {
@@ -28,12 +40,18 @@ public class Circle {
 			} else {
 				return false;
 			}
-		} else {
+		} else 
 			return false;
 		}
-	}
-
 	
+
+	public void draw (Graphics g)
+	{
+		//todo auto-generated method stub
+		g.drawOval(center.getX()-radius, center.getY()-radius, radius*2,radius*2);
+	
+		
+	}
 	public Point getCenter() {
 		return this.center;
 	}
@@ -50,6 +68,8 @@ public class Circle {
 		this.radius = radius;
 	}
 
+	
+	
 	public double area() {
 		return radius * radius * Math.PI;
 	}

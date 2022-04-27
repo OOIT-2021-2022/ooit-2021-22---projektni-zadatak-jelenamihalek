@@ -1,0 +1,73 @@
+package Geometry;
+
+import java.awt.Graphics;
+
+//eksplicitno navodimo da donut nasledjuje circle
+public class Donut extends Circle {
+
+	private int innerRadius;
+
+	public Donut() {
+	}
+
+	public Donut(Point center, int radius, int innerRadius, boolean selected) {
+		this.center = center;
+		this.setRadius(radius);
+		// is.Radius=radius ne moze jer je private
+		this.setSelected(selected);
+		this.innerRadius = innerRadius;
+	}
+
+	/*
+	 * public Donut(Point center, int radius, int innerRadius, boolean selected ) {
+	 * super (center, radius, selected); this.innerRadius=innerRadius; }
+	 */
+	/* iy nadredjene klase poziva tu metodu sa super */
+	public int getInnerRadius() {
+		return innerRadius;
+	}
+//donut je instanca kruga, moramo definisati, downkastikng
+
+	public void setInnerRadius(int innerRadius) {
+		this.innerRadius = innerRadius;
+	};
+
+	public boolean equals(Object obj) {
+		if (obj instanceof Donut) {
+			Donut pomocni = (Donut) obj;
+			/*
+			 * f (this.center.equals(pomocni.center) && this.getCenter()
+			 * ==pomocni.getRadius()) { return true; } else { return false; } } else return
+			 * false;
+			 */
+			if (super.equals(pomocni) && this.innerRadius == pomocni.innerRadius) {
+				return true;
+			} else
+				return false;}
+		else return false;
+		}
+	
+
+	public void draw (Graphics g)
+	{
+		//todo auto-generated method stub
+		super.draw(g);
+		g.drawOval(center.getX()-innerRadius, center.getY()-innerRadius, innerRadius*2, innerRadius*2);
+	
+		
+	}
+
+	public boolean contains(int x, int y) {
+
+		return super.contains(x,y) && center.distance(x,y) >= innerRadius;
+	}
+
+	public double area() {
+		return super.area() - innerRadius * innerRadius * Math.PI;
+	}
+
+	public String toString() {
+		// Center=(x,y), radius= radius
+		return super.toString() + ", innerRadius=" + innerRadius;
+	}
+}
