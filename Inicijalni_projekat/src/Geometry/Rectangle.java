@@ -7,6 +7,7 @@ public class Rectangle extends Shape {
 	private Point upperLeftPoint;
 	private int width;
 	private int height;
+	
 	public Rectangle() {
 	}
 
@@ -81,11 +82,11 @@ public boolean contains (Point clickPoint)
 
 	
 	public int area() {
-		return width * height;
+		return this.width * this.height;
 	}
 
 	public int circumference() {
-		return 2 * (width + height);
+		return 2 * (this.width + this.height);
 	}
 	
 	public String toString() {

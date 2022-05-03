@@ -6,6 +6,7 @@ public class Line extends Shape{
 
 	private Point startPoint;
 	private Point endPoint;
+	private boolean selected;
 	
 	public Line() {
 	}
@@ -69,9 +70,17 @@ public class Line extends Shape{
 
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
+	} //sa this.endPoint je obelezje klase, a endPoint je prosledjeni parametar
+
+
+
+	public boolean isSelected() {
+		return selected;
 	}
 
-
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
 
 	public String toString() {
 		return startPoint + "-- >" + endPoint;
