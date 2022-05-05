@@ -6,7 +6,7 @@ public class Line extends Shape{
 
 	private Point startPoint;
 	private Point endPoint;
-	private boolean selected;
+	
 	
 	public Line() {
 	}
@@ -74,13 +74,7 @@ public class Line extends Shape{
 
 
 
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
+	
 
 	public String toString() {
 		return startPoint + "-- >" + endPoint;

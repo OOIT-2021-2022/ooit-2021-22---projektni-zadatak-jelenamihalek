@@ -6,7 +6,7 @@ public class Circle extends Shape {
 
 	protected Point center; //protected da bi sve klase koje nasledjuju mogke da vide
 	private int radius;
-	private boolean selected;
+	
 	
 
 	public Circle() {
@@ -52,13 +52,7 @@ public class Circle extends Shape {
 		g.drawOval(center.getX()-radius, center.getY()-radius, radius*2,radius*2);	
 	}
 	
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
+	
 
 	public Point getCenter() {
 		return this.center;
