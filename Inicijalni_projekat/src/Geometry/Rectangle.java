@@ -19,8 +19,9 @@ public class Rectangle extends Shape {
 
 	public Rectangle(Point upperLeftPoint, int width, int height, boolean selected) {
 
-		this(upperLeftPoint, width, height);
+		this(upperLeftPoint, width, height);//ovo mora biti prva naredba
 		setSelected(selected);
+		
 	}
 	
 	public boolean contains (int x, int y)

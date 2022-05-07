@@ -5,7 +5,9 @@ public class Test {
 	// vezbe2
 	public static void main(String[] args) {
 		System.out.println("Kreiranje objekata");
-		Point p = new Point();
+		Point p = new Point(); //pozvan konstruktor klase Point, ugredjen je u klasu, nema parametre; sam postavlja 
+		                       //defaultne vrednosti
+		                       
 
 		System.out.println(p.getX()); // stampa 0, jer nismo inicijalizovali vrednost
 		p.setX(10);
@@ -24,7 +26,8 @@ public class Test {
 		p1.setSelected(true);
 
 		Line l1 = new Line(); // kreiran prazan konstruktor koji ce za pocetne vrednosti start/endPoint
-								// staviti null,jer ne postoji referenca
+								// staviti null pointer exception,jer ne postoji referenca
+		                
 		Rectangle r1 = new Rectangle();
 		Circle c1 = new Circle();
 
@@ -75,46 +78,58 @@ public class Test {
 		c1.getCenter().setX(r1.area() - l1.getStartPoint().getY());
 		System.out.println(c1.getCenter().getX());
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("---------------------Vezbe 3-kraj----------------------------------");
 
-//Vezbe 4
-		/*
-		 * 1.Postaviti koordinatu x centra ranije kreiranog kruga k na vrednost zbira
-		 * vrednosti poluprecnika kruga k i vrednosti koja predstavlja udaljenost
-		 * pocetne i krajnje tacke prethodno kreirane linije lin (NE duzine). Sve
-		 * objekte kreirati samostalno.
-		 */
-		/*
-		 * c1.getCenter().setX(c1.getRadius()+(int)(l1.getStartPoint().distance(l1.
-		 * getEndPoint().getX(), l1.getEndPoint().getY())));
-		 * 
-		 * /* Point p=new Point(); d0,0, false public void, ne pise se tip podatka ,
-		 * Point (){};
-		 */
+              //Vezbe 4
+		
 
-		Point p2 = new Point(5, 5);
+		Point p2 = new Point(5, 5); //sa new Point se kreira referenca na mesto u memoriji gde je kreiran objekat
 
 		System.out.println(p2.getX());
+		
+		Line l2=new Line(p2,new Point(10,20));//selected je po defaultu falsu,ako nema tacke
+		                                      // onda je false
+		Rectangle r2=new Rectangle(p2,20,30);
+		Circle c2=new Circle(p2,20);
+		
 
 		Point p3 = new Point(5, 5, false);
 		System.out.println(p3.isSelected());
 
-		System.out.println(p3);
-		System.out.println(l1);
+		System.out.println(p3);//pise ime paketa i odredjenje reference,bez metode string
+		System.out.println(l1);//redefinicijom te metode dobijamo ispis (x1,y1)-->(x2,y2)
+		//System.out.println(p3.toString) je isto
+		System.out.println(r2);
+		System.out.println(c2);
+		
+		System.out.println("---------------------Test equals i ==-------------");
+		int a=5;
+		int b=5;
+		System.out.println(a==b);
+		b=7;
+		System.out.println(a==b);
+		
+		String c="abcd";
+		String d="abc";//kreira se novi objekat
+		System.out.println(c==d);
+		String f="abc"; //referenca na postojeci objekat b
+		System.out.println(f==d);
 
-		Point p4 = new Point(10, 15);
+		Point p4 = new Point(15, 20);
 		Point p5 = new Point(15, 20);
 		System.out.println(p4.equals(p5));
-		System.out.print(p4 == p5);
+		System.out.println(p4 == p5);
 
 		p4 = p5;
 		System.out.println(p4.equals(p5));
-		System.out.print(p4 == p5);
+		System.out.println(p4 == p5);
 
 		Point p6 = new Point(10, 15);
 		Point p7 = new Point(10, 15);
-		System.out.print(p6 == p7);
-		System.out.print(p6.equals(p7));
+		System.out.println(p6 == p7);
+		System.out.println(p6.equals(p7));
+		
+		
 
 		// vezbe 5
 

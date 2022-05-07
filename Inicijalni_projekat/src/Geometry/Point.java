@@ -67,8 +67,9 @@ public class Point extends Shape {
 	public Point (int x, int y, boolean selected) 
 	{//this.x=x;
 	//this.y=y; 
-		this(x,y);
+		this(x,y); //iz prethodne metode, zna se sta poziva zbog tipa i broja parametara
 	setSelected (selected);	
+	//this.selected=selected;
 	
 	};
 
@@ -99,7 +100,8 @@ public class Point extends Shape {
 
 	public String toString() {
 		return "(" + x + "," + y + ")";
-		//return x; ne moze, konkatenacija
+		//return x; ne moze int u string, konkatenacija
+		//redefinisanje ili overwriting metode string
 	}
 
 	

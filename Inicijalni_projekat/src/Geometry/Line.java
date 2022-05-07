@@ -17,7 +17,7 @@ public class Line extends Shape{
 	}
 
 	public Line(Point startPoint, Point endPoint, boolean selected) {
-		//this(startPoint, endPoint);
+		//this(startPoint, endPoint); ovo moze zbog prethodne metode
 		//this.selected = selected;
 		//setSelected(selected);
 		super(selected); //poziv konstruktora iz nadredjene klase-shape
