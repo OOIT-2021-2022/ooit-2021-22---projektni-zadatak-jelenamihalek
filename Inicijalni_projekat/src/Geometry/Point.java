@@ -84,10 +84,11 @@ public class Point extends Shape {
 	 * overwriting predefinisanje metode
 	 */
 	
+	//equals je metoda instance i poziva se nad objektom
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {
 			Point pomocna = (Point) obj;
-			/*downcast objekat pretvaramo u tacku, konvertivanje*/ //poredjenje po vrednosti
+			/*downcast objekat pretvaramo u tacku, konvertovanje*/ //poredjenje po vrednosti
 			if (this.x == pomocna.x && this.y == pomocna.y)//ne mora da stoji this
 				return true;
 			else

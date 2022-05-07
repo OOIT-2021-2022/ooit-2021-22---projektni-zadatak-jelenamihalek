@@ -117,10 +117,10 @@ public class Test {
 
 		Point p4 = new Point(15, 20);
 		Point p5 = new Point(15, 20);
-		System.out.println(p4.equals(p5));
-		System.out.println(p4 == p5);
+		System.out.println(p4.equals(p5));// true jer su iste vrednosti
+		System.out.println(p4 == p5);//false jer su razlicite reference
 
-		p4 = p5;
+		p4 = p5;//dodeljuje se u vrednosti i referenca;menjanjem vrenosti jedne tacke, menja se vrednost druge
 		System.out.println(p4.equals(p5));
 		System.out.println(p4 == p5);
 
