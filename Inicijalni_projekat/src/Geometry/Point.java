@@ -81,7 +81,8 @@ public class Point extends Shape {
 	 * r1==r2 porede se reference, i imace iste vrednosti,uvek true
 	 * ako imamo new onda su dva objekta, dve raylicite refenrece
 	 * equals dal su jednake vrednosti, metoda instance
-	 * overwriting predefinisanje metode
+	 * overwriting predefinisanje metode/isti potpis metode, a razlicita implementacija
+	 * dok kod overloadinga imamo razlicite parametre
 	 */
 	
 	//equals je metoda instance i poziva se nad objektom

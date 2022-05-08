@@ -9,20 +9,21 @@ public class Donut extends Circle {
 
 	public Donut() {
 	}
-
+    public Donut (Point center, int radius, int innerRadius) {
+    	//this.center=center;
+    	//setRadius(radius);
+    	super(center,radius);
+    	this.innerRadius=innerRadius;
+    }
 	public Donut(Point center, int radius, int innerRadius, boolean selected) {
-		this.center = center;
-		this.setRadius(radius);
+		//this.center = center;//jer je definisano kao protected u circle
+	   //	setRadius(radius);//jer je private,iako se ne nalazi u Donut, odlazi u circle i tamo pronalazi metodu
 		// is.Radius=radius ne moze jer je private
-		this.setSelected(selected);
-		this.innerRadius = innerRadius;
+		this(center,radius,innerRadius);
+		setSelected(selected);
 	}
+		
 
-	/*
-	 * public Donut(Point center, int radius, int innerRadius, boolean selected ) {
-	 * super (center, radius, selected); this.innerRadius=innerRadius; }
-	 */
-	/* iy nadredjene klase poziva tu metodu sa super */
 	public int getInnerRadius() {
 		return innerRadius;
 	}
