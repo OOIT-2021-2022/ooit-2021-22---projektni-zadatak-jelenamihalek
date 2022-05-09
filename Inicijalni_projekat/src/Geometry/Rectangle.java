@@ -24,6 +24,28 @@ public class Rectangle extends Shape {
 		
 	}
 	
+	public void moveTo(int x,int y)
+	{
+		upperLeftPoint.moveTo(x,y);
+		
+	}
+	
+	public void moveBy(int x,int y)
+	{
+		upperLeftPoint.moveBy(x, y);
+		
+	}
+
+	public int compareTo(Object obj)
+	{
+		if(obj instanceof Rectangle)
+		{
+			Rectangle rectangleToCompare=(Rectangle)obj;
+			return (int)(this.area()-rectangleToCompare.area());
+		}
+		return 0;
+	}
+
 	public boolean contains (int x, int y)
 	{
 		return upperLeftPoint.getX()<=x && upperLeftPoint.getX()+width>=x && 

@@ -33,6 +33,27 @@ public class Circle extends Shape {
 		return center.distance(clickPoint.getX(), clickPoint.getY())<=2;
 	}
 	
+	public void moveTo(int x,int y)
+	{
+		center.moveTo(x,y);
+		
+	}
+	
+	public void moveBy(int x,int y)
+	{
+		center.moveBy(x, y);
+		
+	}
+	public int compareTo(Object obj)
+	{
+		if(obj instanceof Circle)
+		{
+			Circle circleToCompare=(Circle)obj;
+			return (int)(this.area()-circleToCompare.area());
+		}
+		return 0;
+	}
+
 	public boolean equals(Object obj) {
 		if (obj instanceof Circle) {
 			Circle pomocni = (Circle) obj;

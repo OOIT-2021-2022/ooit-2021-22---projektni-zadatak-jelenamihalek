@@ -25,6 +25,28 @@ public class Line extends Shape{
 		this.endPoint=endPoint;
 	}
 
+	public void moveTo(int x,int y)
+	{
+		startPoint.moveTo(x,y);
+		endPoint.moveTo(x, y);
+	}
+	
+	public void moveBy(int x,int y)
+	{
+		startPoint.moveBy(x, y);
+		endPoint.moveBy(x, y);
+	}
+	
+	public int compareTo(Object obj)
+	{
+		if(obj instanceof Line)
+		{
+			Line lineToCompare=(Line)obj;
+			return (int)(this.length()-lineToCompare.length());
+		}
+		return 0;
+	}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Line) {
 			Line pomocna = (Line) obj;//downcasting

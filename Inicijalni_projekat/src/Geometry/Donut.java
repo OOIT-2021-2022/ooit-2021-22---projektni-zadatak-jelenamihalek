@@ -23,6 +23,15 @@ public class Donut extends Circle {
 		setSelected(selected);
 	}
 		
+	public int compareTo(Object obj)
+	{
+		if(obj instanceof Donut)
+		{
+			Donut donutToCompare=(Donut)obj;
+			return (int)(this.area()-donutToCompare.area());
+		}
+		return 0;
+	}
 
 	public int getInnerRadius() {
 		return innerRadius;
