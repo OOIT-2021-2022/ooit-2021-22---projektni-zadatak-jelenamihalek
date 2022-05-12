@@ -1,6 +1,6 @@
 package ZADATAK2;
 
-public class TestDog extends Dog {
+public class TestDog  {
 	
 	public static void main (String [] args)
 	{
@@ -11,7 +11,7 @@ public class TestDog extends Dog {
 		System.out.println(dogOne);
 		System.out.println(dogTwo);
 		
-		System.out.println(calculateHumanYears(3));
+		System.out.println(Dog.calculateHumanYears(3));
 	}
 
 }
