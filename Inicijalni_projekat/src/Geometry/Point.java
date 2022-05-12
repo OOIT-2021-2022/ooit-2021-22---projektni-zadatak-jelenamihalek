@@ -10,7 +10,7 @@ public class Point extends Shape {
 	
 	public void draw (Graphics g)
 	{
-		//todo auto-generated method stub
+		//todo auto-generated method stub  
 		g.drawLine(x-2, y, x+2, y);
 		g.drawLine(x,y-2,x,y+2);
 		
