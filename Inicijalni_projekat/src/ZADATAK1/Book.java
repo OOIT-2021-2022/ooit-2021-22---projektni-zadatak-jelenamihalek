@@ -22,7 +22,7 @@ public class Book {
 	
 	private double calculateDiscount (int discount)
 	{
-		return this.price*discount;
+		return this.price*discount/100;
 	}
 	public double calculateDiscountPrice(int discount)
 	{
