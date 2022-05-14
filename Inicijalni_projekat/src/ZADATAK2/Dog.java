@@ -31,15 +31,15 @@ public class Dog extends Animal {
 		if (this.hungry==true)
 		{
 			this.hungry=false;
-			System.out.println(getName()+" is full and happy");
+			System.out.println(super.getName()+" is full and happy");
 		}
-		else System.out.println(getName()+ "buries food for rainy days");
+		else System.out.println(super.getName()+ "buries food for rainy days");
 	}
 	
 	public String toString()
 	
 	{
-		return "Name"+getName()+"race"+getBreed()+ "hungry:"+isHungry();
+		return "Name"+super.getName()+"race"+super.getBreed()+ "hungry:"+this.isHungry();
 	}
 	
 	
