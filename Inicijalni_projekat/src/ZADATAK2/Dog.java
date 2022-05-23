@@ -39,7 +39,7 @@ public class Dog extends Animal {
 	public String toString()
 	
 	{
-		return "Name"+super.getName()+"race"+super.getBreed()+ "hungry:"+this.isHungry();
+		return "Name"+super.getName()+"race"+getBreed()+ "hungry:"+this.isHungry();
 	}
 	
 	
