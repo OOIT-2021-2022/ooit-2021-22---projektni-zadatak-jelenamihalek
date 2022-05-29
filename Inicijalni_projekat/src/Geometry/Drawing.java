@@ -3,6 +3,7 @@ package Geometry;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
@@ -87,5 +88,13 @@ public class Drawing extends JPanel {
 	 //	System.out.println(e.getMessage());
 	}
 	
-	}}
+	
+	
+ HashMap<String,Shape> hmShapes=new HashMap<String,Shape>();
+ hmShapes.put("point",p);
+ hmShapes.put("line",l);
+ System.out.println(hmShapes.get("point"));
+ 
+}
+	}
 
