@@ -1,5 +1,6 @@
 package Geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 //eksplicitno navodimo da donut nasledjuje circle
@@ -63,6 +64,16 @@ public class Donut extends Circle {
 		//todo auto-generated method stub
 		super.draw(g);
 		g.drawOval(center.getX()-innerRadius, center.getY()-innerRadius, innerRadius*2, innerRadius*2);
+		if (isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(center.getX() - 2, center.getY() - 2, 4, 4);
+			g.drawRect(center.getX() - innerRadius - 2, center.getY() - 2, 4, 4);
+			g.drawRect(center.getX() + innerRadius - 2, center.getY() - 2, 4, 4);
+			g.drawRect(center.getX() - 2, center.getY() - innerRadius - 2, 4, 4);
+			g.drawRect(center.getX() - 2, center.getY() + innerRadius - 2, 4, 4);
+			g.setColor(Color.black);
+		}
+
 	
 		
 	}

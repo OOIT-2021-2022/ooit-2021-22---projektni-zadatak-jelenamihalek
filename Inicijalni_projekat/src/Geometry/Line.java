@@ -1,5 +1,6 @@
 package Geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Line extends Shape{
@@ -73,7 +74,12 @@ public class Line extends Shape{
 		//todo auto-generated method stub
 		g.drawLine(startPoint.getX(),startPoint.getY(),endPoint.getX(),endPoint.getY());
 		//da su x,y protected , ne moye/komnpozicija...
-		
+		if(isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(startPoint.getX()-2, startPoint.getY()-2, 4, 4);
+			g.drawRect(endPoint.getX()-2, endPoint.getY()-2, 4, 4);
+			g.setColor(Color.BLACK);
+		}
 	}
 
 	public void setStartPoint(Point startPoint)

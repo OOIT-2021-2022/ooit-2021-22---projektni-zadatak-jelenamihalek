@@ -1,5 +1,6 @@
 package Geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rectangle extends Shape {
@@ -76,7 +77,14 @@ public boolean contains (Point clickPoint)
 		//todo auto-generated method stub
 		g.drawRect(upperLeftPoint.getX(),upperLeftPoint.getY(),width,height);
 	
-		
+		if(isSelected()) {
+			g.setColor(Color.blue);
+			g.drawRect(upperLeftPoint.getX() - 2, upperLeftPoint.getY() - 2, 4, 4);
+			g.drawRect(upperLeftPoint.getX() + width - 2, upperLeftPoint.getY() - 2, 4, 4);
+			g.drawRect(upperLeftPoint.getX() - 2, upperLeftPoint.getY() + height - 2, 4, 4);
+			g.drawRect(upperLeftPoint.getX() + width  - 2, upperLeftPoint.getY() + height - 2, 4, 4);
+			g.setColor(Color.black);
+		}
 	}
 	public Point getUpperLeftPoint() {
 		return this.upperLeftPoint;

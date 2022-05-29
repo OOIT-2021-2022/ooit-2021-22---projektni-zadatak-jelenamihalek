@@ -46,8 +46,23 @@ public class Drawing extends JPanel {
 	shapes.add(c);
 	shapes.add(d);
 	shapes.add(r);
-	
 	Iterator<Shape> it=shapes.iterator();
+
+	//Exception
+			try {
+				c.setRadius(-10);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+
+			it = shapes.iterator();
+			while (it.hasNext()) {
+				Shape sh = it.next();
+				sh.moveBy(10, 0);
+				sh.setSelected(true);
+				sh.draw(g);
+			}
+	
    while (it.hasNext())
    { Shape sh=it.next();
 	sh.moveBy(10,0);
