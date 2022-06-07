@@ -21,6 +21,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 
@@ -44,6 +45,7 @@ public class FrmStack extends JFrame {
 	private DefaultListModel<Circle> dlm= new DefaultListModel<Circle>();
 	private Stack<Circle> addCircle=new Stack<Circle>();
 	private JList<Circle> list;
+	private int i=0;
 
 	/**
 	 * Launch the application.
@@ -113,6 +115,9 @@ public class FrmStack extends JFrame {
 					lblStack.setFont(new Font("Ariel", Font.BOLD, 20));
 					lblStack.setHorizontalAlignment(SwingConstants.CENTER);
 					
+					
+					
+					
 					JScrollPane scrollPane = new JScrollPane();
 					GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 					gbc_scrollPane.gridheight = 5;
@@ -123,10 +128,21 @@ public class FrmStack extends JFrame {
 					gbc_scrollPane.gridy = 3;
 					panelSouth.add(scrollPane, gbc_scrollPane);
 					
+				
 					
 			
 					
 					JButton btnAdd = new JButton("ADD");
+					btnAdd.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							DlgAddDelete dialog=new DlgAddDelete ();
+							dialog.setVisible(true);
+							if(dialog.getCircle() != null) {
+								dlm.add(i, dialog.getCircle());
+								i++;
+							}
+						}
+					});
 					
 					GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 					gbc_btnAdd.anchor = GridBagConstraints.NORTHWEST;
@@ -136,6 +152,21 @@ public class FrmStack extends JFrame {
 					panelSouth.add(btnAdd, gbc_btnAdd);
 					
 					JButton btnDelete = new JButton("DELETE");
+					btnDelete.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							if(dlm.isEmpty()==false)
+							{
+							DlgAddDelete dlg = new DlgAddDelete();
+							dlg.setCircle(dlm.getElementAt(0));
+							dlg.setVisible(true);
+							dlm.removeElementAt(0);
+							}
+							else {
+							JOptionPane.showMessageDialog(null,"Stack is empty!","ERROR", JOptionPane.ERROR_MESSAGE);
+							}	
+						}
+					});
 					
 					GridBagConstraints gbc_btnDelete = new GridBagConstraints();
 					gbc_btnDelete.insets = new Insets(0, 0, 0, 5);
@@ -147,10 +178,9 @@ public class FrmStack extends JFrame {
 		
 		
 		
-		
-		
 					list = new JList<Circle>();
 					scrollPane.setViewportView(list);
-
+					list.setModel(dlm);
+					
 	}
 }

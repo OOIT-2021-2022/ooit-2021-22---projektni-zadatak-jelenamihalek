@@ -196,44 +196,44 @@ public class FrmDrawing extends JFrame {
 		{ if(selected instanceof Point)
 		{
 			Point point=(Point) selected; //downcasting, moramo ga iz Shape pretvoriti u Point
-			DlgPoint dialog=new DlgPoint();//
-			dialog.setPoint(point);
-			dialog.setModal(true);;
-			dialog.setVisible(true);
+			DlgPoint dlg=new DlgPoint();//
+			dlg.setPoint(point);
+			dlg.setModal(true);;
+			dlg.setVisible(true);
 		}
 		else if(selected instanceof Line)
 		{ 	
 			Line line=(Line) selected;
-			DlgLine dialog=new DlgLine();
-			dialog.setLine(line);
-			dialog.setModal(true);
-			dialog.setVisible(true);
+			DlgLine dlg=new DlgLine();
+			dlg.setLine(line);
+			dlg.setModal(true);
+			dlg.setVisible(true);
 			
 		}
 		
 		else if(selected instanceof Circle)
 		{
 			Circle circle=(Circle) selected;
-			DlgAddDelete dialog=new DlgAddDelete();
-			dialog.setCircle(circle);
-			dialog.setModal(true);
-			dialog.setVisible(true);
+			DlgAddDelete dlg=new DlgAddDelete();
+			dlg.setCircle(circle);
+			dlg.setModal(true);
+			dlg.setVisible(true);
 		}
 		else if(selected instanceof Donut)
 		{
 			Donut donut=(Donut) selected;
-			DlgDonut dialog=new DlgDonut();
-			dialog.setDonut(donut);
-			dialog.setModal(true);
-			dialog.setVisible(true);
+			DlgDonut dlg=new DlgDonut();
+			dlg.setDonut(donut);
+			dlg.setModal(true);
+			dlg.setVisible(true);
 		}
 		else if(selected instanceof Rectangle)
 		{
 			Rectangle rectangle=(Rectangle) selected;
-			DlgRectangle dialog=new DlgRectangle();
-			dialog.setRectangle(rectangle);
-			dialog.setModal(true);
-			dialog.setVisible(true);
+			DlgRectangle dlg=new DlgRectangle();
+			dlg.setRectangle(rectangle);
+			dlg.setModal(true);
+			dlg.setVisible(true);
 		}
 			
 		}

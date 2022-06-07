@@ -17,6 +17,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Point;
+
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -139,14 +141,26 @@ public class DlgAddDelete extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						int x = Integer.parseInt(textCX.getText());
+						int y = Integer.parseInt(textCY.getText());
+						Point center=new Point(x,y);
+						
+						int radius = Integer.parseInt(textR.getText());
+						
 						if(Integer.parseInt(textR.getText())<0) 
 							JOptionPane.showMessageDialog(null,  "Radius must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
 							
-							
+						
+						//circle = new Circle(center,radius);
+						dispose();
 
 						
+					
+						
 					}
-				});
+				}
+				);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
