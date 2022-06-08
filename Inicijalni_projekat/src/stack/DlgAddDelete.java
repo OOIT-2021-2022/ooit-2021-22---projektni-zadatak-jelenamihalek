@@ -1,7 +1,9 @@
 package stack;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -9,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import geometry.Circle;
+import geometry.Point;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,7 +20,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Point;
+
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -50,7 +53,8 @@ public class DlgAddDelete extends JDialog {
 	 */
 	public DlgAddDelete() {
 		setModal(true);
-		setTitle("ADD OR DELETE CIRCLE");
+		
+		setTitle("CIRCLE");
 		setBounds(100, 100, 450, 350);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,9 +63,11 @@ public class DlgAddDelete extends JDialog {
 		
 		JPanel panelNorth = new JPanel();
 		contentPanel.add(panelNorth, BorderLayout.NORTH);
+		panelNorth.setBackground(new Color(230, 230, 250));
 		
 		JPanel panelWest = new JPanel();
 		contentPanel.add(panelWest, BorderLayout.WEST);
+		panelWest.setBackground(new Color(230, 230, 250));
 		
 		JPanel panelCenter = new JPanel();
 		contentPanel.add(panelCenter, BorderLayout.CENTER);
@@ -71,13 +77,15 @@ public class DlgAddDelete extends JDialog {
 		gbl_panelCenter.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelCenter.setLayout(gbl_panelCenter);
+		panelCenter.setBackground(new Color(230, 230, 250));
 		
-		JLabel lblTitle = new JLabel("ADD OR DELETE CIRCLE");
+		JLabel lblTitle = new JLabel("CIRCLE");
 		GridBagConstraints gbc_lblTitle = new GridBagConstraints();
 		gbc_lblTitle.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTitle.gridx = 2;
 		gbc_lblTitle.gridy = 1;
 		panelCenter.add(lblTitle, gbc_lblTitle);
+		lblTitle.setFont(new Font("Ariel", Font.BOLD, 18));
 		
 		JLabel lblCX = new JLabel(" Center X:");
 		GridBagConstraints gbc_lblCX = new GridBagConstraints();
@@ -141,25 +149,32 @@ public class DlgAddDelete extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						circle=null;
+						try {
 						int x = Integer.parseInt(textCX.getText());
 						int y = Integer.parseInt(textCY.getText());
 						Point center=new Point(x,y);
 						
 						int radius = Integer.parseInt(textR.getText());
 						
-						if(Integer.parseInt(textR.getText())<0) 
+						if(radius<0) 
 							JOptionPane.showMessageDialog(null,  "Radius must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
+						else if(x<0 || y<0)
+							JOptionPane.showMessageDialog(null,  "X and Y must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
 							
-						
-						//circle = new Circle(center,radius);
-						dispose();
-
+						else
+						circle=new Circle(center,radius);
+						setVisible(false);
+						}
+						catch(Exception ex){
+							JOptionPane.showMessageDialog(null,  "Please enter a number! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
+						}
+						}
 						
 					
 						
 					}
-				}
+				
 				);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -183,44 +198,33 @@ public class DlgAddDelete extends JDialog {
 		return textCX;
 	}
 
-	public void setTextCX(JTextField textCX) {
-		this.textCX = textCX;
-	}
+	
 
 	public JTextField getTextCY() {
 		return textCY;
 	}
 
-	public void setTextCY(JTextField textCY) {
-		this.textCY = textCY;
-	}
-
+	
 	public JTextField getTextR() {
 		return textR;
 	}
 
-	public void setTextR(JTextField textR) {
-		this.textR = textR;
-	}
 
-	public DlgAddDelete getDialog() {
-		return dialog;
-	}
 
-	public void setDialog(DlgAddDelete dialog) {
-		this.dialog = dialog;
-	}
 
 	public Circle getCircle() {
 		return circle;
 	}
 
-	public void setCircle(Circle c) {
-		this.circle = c;
+	public void setCircle(Circle circle) {
+		this.circle = circle;
 	}
 
-	public JPanel getContentPanel() {
-		return contentPanel;
+	public void setCircle(Point center, int radius) {
+		textCX.setText("" + circle.getCenter().getX());
+		textCY.setText("" + circle.getCenter().getY());
+		textR.setText("" + circle.getRadius());
+		
 	}
 	
 	

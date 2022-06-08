@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -15,18 +16,24 @@ import javax.swing.border.EmptyBorder;
 
 
 import geometry.Circle;
+import stack.DlgAddDelete;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JScrollBar;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Scrollbar;
+import java.awt.ScrollPane;
 
 public class FrmSort extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList <Circle> arrayList=new ArrayList<Circle>();
+	private ArrayList <Circle> circles=new ArrayList<Circle>();
 	private DefaultListModel<Circle> dlm= new DefaultListModel<Circle>();
 	JList list = new JList();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -59,24 +66,23 @@ public class FrmSort extends JFrame {
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		panelCenter.setBackground(new Color(212, 123, 237));
 		GridBagLayout gbl_panelCenter = new GridBagLayout();
-		gbl_panelCenter.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panelCenter.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panelCenter.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panelCenter.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelCenter.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panelCenter.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panelCenter.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panelCenter.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelCenter.setLayout(gbl_panelCenter);
 		
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridheight = 5;
-		gbc_panel.gridwidth = 9;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 4;
-		panelCenter.add(panel, gbc_panel);
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 8;
+		gbc_scrollPane.gridwidth = 9;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 2;
+		panelCenter.add(scrollPane, gbc_scrollPane);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		panel.add(scrollBar);
+		list.setModel(dlm);
+		 scrollPane.setViewportView(list);
 		
 		JPanel panelNorth = new JPanel();
 		contentPane.add(panelNorth, BorderLayout.NORTH);
@@ -84,14 +90,42 @@ public class FrmSort extends JFrame {
 		
 		JPanel panelSouth = new JPanel();
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
+	
 		
+
 		JButton btnAdd = new JButton("ADD");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgAddDelete dlg=new DlgAddDelete ();
+				dlg.setVisible(true);
+				if(dlg.getCircle() != null) {
+					circles.add(dlg.getCircle());
+					list.setModel(sort());
+					
+					
+				}
+			}
+		});
 		panelSouth.add(btnAdd);
 		
 		JButton btnC = new JButton("Cancel");
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
 		panelSouth.add(btnC);
 		
+		
+	}
 
+	public DefaultListModel<Circle> sort() {
+		Iterator<Circle> iterator = circles.iterator();
+		DefaultListModel<Circle> dlm = new DefaultListModel<Circle>();
+		while(iterator.hasNext()) {
+			dlm.addElement(iterator.next());
+		}	
+		return dlm;
+	}
 
-}
 }

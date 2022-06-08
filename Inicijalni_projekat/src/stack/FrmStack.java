@@ -43,9 +43,10 @@ public class FrmStack extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultListModel<Circle> dlm= new DefaultListModel<Circle>();
-	private Stack<Circle> addCircle=new Stack<Circle>();
 	private JList<Circle> list;
-	private int i=0;
+	private Stack<Circle> circles=new Stack<Circle>();
+	private int i;
+	DlgAddDelete dialog=new DlgAddDelete();
 
 	/**
 	 * Launch the application.
@@ -138,9 +139,14 @@ public class FrmStack extends JFrame {
 							DlgAddDelete dialog=new DlgAddDelete ();
 							dialog.setVisible(true);
 							if(dialog.getCircle() != null) {
-								dlm.add(i, dialog.getCircle());
-								i++;
+
+									circles.push(dialog.getCircle());//da bude ispred prethodnog,CIRCLES-STACK
+									dlm.add(i, dialog.getCircle());//ali se dodaje u listu
+									JOptionPane.showMessageDialog(null,"Circle is added!","GREAT!", JOptionPane.INFORMATION_MESSAGE);
 							}
+							
+							
+							
 						}
 					});
 					
@@ -157,9 +163,8 @@ public class FrmStack extends JFrame {
 							
 							if(dlm.isEmpty()==false)
 							{
-							DlgAddDelete dlg = new DlgAddDelete();
-							dlg.setCircle(dlm.getElementAt(0));
-							dlg.setVisible(true);
+							dialog.setCircle(dlm.getElementAt(0));//skida poslednji element sa liste
+							dialog.setVisible(true);
 							dlm.removeElementAt(0);
 							}
 							else {
@@ -176,11 +181,11 @@ public class FrmStack extends JFrame {
 					panelSouth.add(btnDelete, gbc_btnDelete);
 		
 		
-		
-		
 					list = new JList<Circle>();
 					scrollPane.setViewportView(list);
 					list.setModel(dlm);
+					
+					
 					
 	}
 }
