@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Stack;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
@@ -38,14 +39,15 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class FrmStack extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultListModel<Circle> dlm= new DefaultListModel<Circle>();
+	//private Stack <Circle> circles=new Stack <Circle>();
+	private ArrayList <Circle> circles=new ArrayList <Circle>();
 	private JList<Circle> list;
-	private Stack<Circle> circles=new Stack<Circle>();
-	private int i;
 	DlgAddDelete dialog=new DlgAddDelete();
 
 	/**
@@ -69,6 +71,7 @@ public class FrmStack extends JFrame {
 	 */
 	public FrmStack() {
 		setTitle("Mihalek Jelena, IT3/2021");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 470,370);
 		contentPane = new JPanel();
@@ -139,9 +142,8 @@ public class FrmStack extends JFrame {
 							DlgAddDelete dialog=new DlgAddDelete ();
 							dialog.setVisible(true);
 							if(dialog.getCircle() != null) {
-
-									circles.push(dialog.getCircle());//da bude ispred prethodnog,CIRCLES-STACK
-									dlm.add(i, dialog.getCircle());//ali se dodaje u listu
+									dlm.add(0, dialog.getCircle());//ali se dodaje u listu
+									circles.add(dialog.getCircle());
 									JOptionPane.showMessageDialog(null,"Circle is added!","GREAT!", JOptionPane.INFORMATION_MESSAGE);
 							}
 							
@@ -160,12 +162,32 @@ public class FrmStack extends JFrame {
 					JButton btnDelete = new JButton("DELETE");
 					btnDelete.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							DlgAddDelete dialog=new DlgAddDelete();
 							
 							if(dlm.isEmpty()==false)
 							{
-							dialog.setCircle(dlm.getElementAt(0));//skida poslednji element sa liste
-							dialog.setVisible(true);
-							dlm.removeElementAt(0);
+							//dialog.setCircle(dlm.getElementAt(0));//skida poslednji element sa liste
+							int[] fields=new int[3] ;//napravili niz i pokupili podatke iz liste
+							fields[0]=dlm.getElementAt(0).getCenter().getX();
+							fields[1]=dlm.getElementAt(0).getCenter().getY();
+							fields[2]=dlm.getElementAt(0).getRadius();
+							dialog.getTextCX().setText(String.valueOf(fields[0]));
+							dialog.getTextCY().setText(String.valueOf(fields[1]));
+							dialog.getTextR().setText(String.valueOf(fields[2]));//popunili smo polja
+							
+							
+							  dialog.setVisible(true);
+							 // if (dialog.action(null, dialog.getOkButton()))
+							//  {
+					
+						        dialog.setCircle(dlm.getElementAt(0));
+								dlm.removeElementAt(0);
+								 circles.remove(0);
+							 // }
+								  
+							
+							
+							
 							}
 							else {
 							JOptionPane.showMessageDialog(null,"Stack is empty!","ERROR", JOptionPane.ERROR_MESSAGE);

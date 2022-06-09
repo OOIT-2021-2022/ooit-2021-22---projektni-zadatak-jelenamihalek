@@ -34,6 +34,8 @@ public class DlgAddDelete extends JDialog {
 	private JTextField textR;
 	 private DlgAddDelete dialog;
 	 private Circle circle;
+	
+	JButton okButton;
 
 	/**
 	 * Launch the application.
@@ -55,6 +57,7 @@ public class DlgAddDelete extends JDialog {
 		setModal(true);
 		
 		setTitle("CIRCLE");
+		setResizable(false);
 		setBounds(100, 100, 450, 350);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -146,18 +149,18 @@ public class DlgAddDelete extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+			 okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						circle=null;
 						try {
-						int x = Integer.parseInt(textCX.getText());
+						int x =Integer.parseInt(textCX.getText());
 						int y = Integer.parseInt(textCY.getText());
 						Point center=new Point(x,y);
 						
 						int radius = Integer.parseInt(textR.getText());
 						
-						if(radius<0) 
+						if(radius<=0) 
 							JOptionPane.showMessageDialog(null,  "Radius must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
 						else if(x<0 || y<0)
 							JOptionPane.showMessageDialog(null,  "X and Y must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
@@ -212,6 +215,20 @@ public class DlgAddDelete extends JDialog {
 
 
 
+	
+
+	public void setTextCX(JTextField textCX) {
+		this.textCX = textCX;
+	}
+
+	public void setTextCY(JTextField textCY) {
+		this.textCY = textCY;
+	}
+
+	public void setTextR(JTextField textR) {
+		this.textR = textR;
+	}
+
 	public Circle getCircle() {
 		return circle;
 	}
@@ -225,6 +242,16 @@ public class DlgAddDelete extends JDialog {
 		textCY.setText("" + circle.getCenter().getY());
 		textR.setText("" + circle.getRadius());
 		
+	}
+
+	
+
+	public JButton getOkButton() {
+		return okButton;
+	}
+
+	public void setOkButton(JButton okButton) {
+		this.okButton = okButton;
 	}
 	
 	
