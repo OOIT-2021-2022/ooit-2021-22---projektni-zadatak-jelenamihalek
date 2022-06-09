@@ -177,13 +177,13 @@ public class FrmStack extends JFrame {
 							
 							
 							  dialog.setVisible(true);
-							 // if (dialog.action(null, dialog.getOkButton()))
-							//  {
+							  if (dialog.isOk==true)
+							  {
 					
 						        dialog.setCircle(dlm.getElementAt(0));
 								dlm.removeElementAt(0);
 								 circles.remove(0);
-							 // }
+							  }
 								  
 							
 							

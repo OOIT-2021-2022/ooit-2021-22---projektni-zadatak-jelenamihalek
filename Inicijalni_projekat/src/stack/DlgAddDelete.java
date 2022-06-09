@@ -34,6 +34,7 @@ public class DlgAddDelete extends JDialog {
 	private JTextField textR;
 	 private DlgAddDelete dialog;
 	 private Circle circle;
+	 protected boolean isOk;
 	
 	JButton okButton;
 
@@ -182,6 +183,9 @@ public class DlgAddDelete extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				
+				 isOk = true;
+				setVisible(false);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
