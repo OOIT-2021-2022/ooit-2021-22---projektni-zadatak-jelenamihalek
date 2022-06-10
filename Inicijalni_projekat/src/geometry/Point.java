@@ -110,6 +110,7 @@ public class Point extends Shape {
 	 * dok kod overloadinga imamo razlicite parametre
 	 */
 	
+	
 	//equals je metoda instance i poziva se nad objektom
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {
@@ -130,7 +131,7 @@ public class Point extends Shape {
 		//return x; ne moze int u string, konkatenacija
 		//redefinisanje ili overwriting metode string
 	}
-
+	
 	
 	
 }

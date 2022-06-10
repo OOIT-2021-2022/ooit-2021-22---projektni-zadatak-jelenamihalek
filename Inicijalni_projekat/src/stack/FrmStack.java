@@ -45,7 +45,6 @@ public class FrmStack extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultListModel<Circle> dlm= new DefaultListModel<Circle>();
-	//private Stack <Circle> circles=new Stack <Circle>();
 	private ArrayList <Circle> circles=new ArrayList <Circle>();
 	private JList<Circle> list;
 	DlgAddDelete dialog=new DlgAddDelete();

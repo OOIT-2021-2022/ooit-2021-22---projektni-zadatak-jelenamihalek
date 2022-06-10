@@ -9,8 +9,13 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
+import geometry.Circle;
+import geometry.Donut;
+import geometry.Line;
 import geometry.Point;
+import geometry.Rectangle;
 import geometry.Shape;
+import stack.DlgAddDelete;
 
 public class PnlDrawing extends JPanel {
 private ArrayList<Shape> shapes=new ArrayList<Shape>();
@@ -28,11 +33,7 @@ private Shape selected;
 	
 	public PnlDrawing(FrmDrawing frame) {
 		 this.frame=frame;
-		 addMouseListener(new MouseAdapter() {
-			 public void mouseClickedx(MouseEvent arg0) {
-			//	 this.MouseClicked(arg0);
-			 }
-		 });
+		
 	}
 		
 
@@ -120,9 +121,81 @@ private Shape selected;
 				this.startPoint = startPoint;
 			}
 
-			
+			public void paint (Graphics g) {
+				super.paint(g);
+				Iterator<Shape> it=shapes.iterator();
+				while(it.hasNext())
+				{
+					Shape s=it.next();
+					if(s instanceof Point) {
+						((Point)s).draw(g);
+					} else if (s instanceof Line) {
+						((Line)s).draw(g);
+					} else if (s instanceof Rectangle) {
+						((Rectangle)s).draw(g);
+					} else if (s instanceof Circle) {
+						((Circle)s).draw(g);
+					} else if (s instanceof Donut) {
+						((Donut)s).draw(g);
+					}
+				}
 
-			
+				protected void thisMouseClicked(MouseEvent e) {
+					int x = e.getX();
+					int y = e.getY();
+					
+					
+					if(frame.getTglbtnSel().isSelected()) {
+						selected=null;
+						Iterator<Shape> it=shapes.iterator();
+						while(it.hasNext()) {
+							
+							Shape shape=it.next();
+							shape.setSelected(false);
+							if(shape.contains(e.getX(), e.getY()))
+								selected=shape;
+						}
+						
+						if (selected!=null) {
+							selected.setSelected(true);
+						}
+						
+					} else if (frame.getTglbtnDraw().isSelected()) {
+							Iterator<Shape> it=shapes.iterator();
+							while(it.hasNext()) {
+								Shape shape=it.next();
+								shape.setSelected(false);
+							}
+						
+							 if (frame.getTglbtnPoint().isSelected()) {
+							shapes.add(new Point(x, y));
+						}else if(frame.getTglbtnLine().isSelected()) {
+							if(startPoint==null)
+								startPoint=new Point(x, y);
+							else {
+								shapes.add(new Line(startPoint, new Point(x, y)));
+								startPoint=null;
+							}
+						}else if (frame.getTglbtnRectangle().isSelected()) {
+							DlgRectangle dlg=new DlgRectangle();
+							dlg.setVisible(true);
+								shapes.add(new Rectangle(new Point (x,y), dlg.getHeight(), dlg.getWidth()));
+				
+						}else if (frame.getTglbtnCircle().isSelected()) {
+							DlgAddDelete dlg=new DlgAddDelete();
+							dlg.setVisible(true);
+							shapes.add(new Circle(new Point(x, y),dlg.getTextR()));
+							
+						} else if (frame.getTglbtnDonut().isSelected()) {
+							DlgDonut dlg = new DlgDonut();
+							dlg.setVisible(true);
+							
+							shapes.add(new Donut(new Point(x, y), dlg.getTextR(), dlg.getTextIR());
+						}
+					}
+					repaint();
+					
+				}
 		
 
 	}

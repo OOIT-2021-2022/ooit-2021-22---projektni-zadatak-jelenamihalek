@@ -9,6 +9,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -154,6 +155,26 @@ public class DlgLine extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					try {	
+						int x1 = Integer.parseInt(textSPX.getText());
+						int y1 = Integer.parseInt(textSPY.getText());
+						int x2 = Integer.parseInt(textEPX.getText());
+						int y2 = Integer.parseInt(textEPY.getText());
+						
+						if (x1 < 0 || y1 < 0 || x2<0 || y2<0) {
+							JOptionPane.showMessageDialog(null, "X and Y must be greater or equals than 0",
+									"Error!", JOptionPane.ERROR_MESSAGE);
+							return;
+					}
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				});
+				
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
