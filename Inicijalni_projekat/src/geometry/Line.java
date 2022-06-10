@@ -108,4 +108,15 @@ public class Line extends Shape{
 		return startPoint + "-- >" + endPoint;
 	}
 
+	public void setColor(Color eColor) {
+		this.setColor(eColor);
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return getColor();
+	}
+
 }

@@ -1,12 +1,14 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,6 +32,7 @@ public class DlgLine extends JDialog {
 	private JTextField textEPY;
 	private DlgAddDelete dialog;
 	private Line line;
+	private Color eColor;
 	/**
 	 * Launch the application.
 	 */
@@ -168,6 +171,10 @@ public class DlgLine extends JDialog {
 									"Error!", JOptionPane.ERROR_MESSAGE);
 							return;
 					}
+						eColor = JColorChooser.showDialog(null, "EDGE", eColor);
+						line=new Line(new Point (x1,y1), new Point (x2,y2), false); //false jer nije selektovana
+					   line.setColor(eColor);
+						dispose();
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
 								JOptionPane.ERROR_MESSAGE);
@@ -237,14 +244,20 @@ public class DlgLine extends JDialog {
 		return line;
 	}
 
-	public void setLine(Line line) {
-		this.line = line;
-	}
+	
 
 	public JPanel getContentPanel() {
 		return contentPanel;
 	}
 
+	
+	public void setLine(Line line) {
+		textSPX.setText("" + line.getStartPoint().getX());
+		textSPY.setText("" + line.getStartPoint().getY());
+		textEPX.setText("" + line.getEndPoint().getX());
+		textEPY.setText("" + line.getEndPoint().getY());
+		eColor = line.getColor();
+	}
 	
 	
 }

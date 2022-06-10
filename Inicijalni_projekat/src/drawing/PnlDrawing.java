@@ -67,26 +67,10 @@ private Shape selected;
 			//zasto sam morala da zamenim?
 			
 			
-			public void removeSelected() {
-				shapes.removeIf(shape -> shape.isSelected());
-				repaint();
-			}
 			
-			public void deselect() {
-				shapes.forEach(shape -> shape.setSelected(false));
-				repaint();
-			}
+	
 			
-			public void select(Point point) {
-				for (int i = shapes.size()-1; i >= 0; i--) {
-					if (shapes.get(i).contains(point.getX(), point.getY())) {
-						shapes.get(i).setSelected(true);
-						repaint();
-						return;
-					}
-				}
-			}
-			
+		
 			public Shape getSelected() {
 				
 				return selected; 
@@ -121,24 +105,8 @@ private Shape selected;
 				this.startPoint = startPoint;
 			}
 
-			public void paint (Graphics g) {
-				super.paint(g);
-				Iterator<Shape> it=shapes.iterator();
-				while(it.hasNext())
-				{
-					Shape s=it.next();
-					if(s instanceof Point) {
-						((Point)s).draw(g);
-					} else if (s instanceof Line) {
-						((Line)s).draw(g);
-					} else if (s instanceof Rectangle) {
-						((Rectangle)s).draw(g);
-					} else if (s instanceof Circle) {
-						((Circle)s).draw(g);
-					} else if (s instanceof Donut) {
-						((Donut)s).draw(g);
-					}
-				}
+		
+				
 
 				protected void thisMouseClicked(MouseEvent e) {
 					int x = e.getX();
@@ -176,22 +144,8 @@ private Shape selected;
 								shapes.add(new Line(startPoint, new Point(x, y)));
 								startPoint=null;
 							}
-						}else if (frame.getTglbtnRectangle().isSelected()) {
-							DlgRectangle dlg=new DlgRectangle();
-							dlg.setVisible(true);
-								shapes.add(new Rectangle(new Point (x,y), dlg.getHeight(), dlg.getWidth()));
-				
-						}else if (frame.getTglbtnCircle().isSelected()) {
-							DlgAddDelete dlg=new DlgAddDelete();
-							dlg.setVisible(true);
-							shapes.add(new Circle(new Point(x, y),dlg.getTextR()));
-							
-						} else if (frame.getTglbtnDonut().isSelected()) {
-							DlgDonut dlg = new DlgDonut();
-							dlg.setVisible(true);
-							
-							shapes.add(new Donut(new Point(x, y), dlg.getTextR(), dlg.getTextIR());
 						}
+						
 					}
 					repaint();
 					
