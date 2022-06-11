@@ -24,6 +24,16 @@ public class Rectangle extends Shape {
 		setSelected(selected);
 		
 	}
+	public Rectangle(Point upperLeftPoint, int width, int height, Color eColor, Color iColor) {
+
+		this.upperLeftPoint = upperLeftPoint;
+		this.width = width;
+		this.height = height;
+		seteColor(eColor);
+		setiColor(iColor);
+		
+	}
+	
 	
 	public void moveTo(int x,int y)
 	{

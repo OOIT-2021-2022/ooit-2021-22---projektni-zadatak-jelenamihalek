@@ -41,7 +41,7 @@ public class FrmDrawing extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private PnlDrawing panel = new PnlDrawing();
+	private static PnlDrawing panel;
 	private Color eColor, iColor;
 	private Point point;
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
@@ -72,7 +72,18 @@ public class FrmDrawing extends JFrame {
 				}
 			}
 		});
+		JFrame frame=new JFrame("DRAWINGS");
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		try {
+			frame.getContentPane().add(panel);
+			frame.pack();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+
 
 	/**
 	 * Create the frame.
@@ -255,6 +266,20 @@ public class FrmDrawing extends JFrame {
 		panelSouth.add(tglbtnDraw, gbc_tglbtnDraw);
 
 		tglbtnDel = new JToggleButton("DELETE");
+		tglbtnDel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[]answer= new String[] {"YES", "NO"};
+				Shape selected = panel.getSelected();
+				if (selected!=null) {
+					//int [] choice=JOptionPane.showOptionDialog(null, "DO YOU WANT TO DELETE THIS SHAPE?", "WARNING!", JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, choice, answer[0]);
+					//if(choice==answer[0]) {
+					panel.getShapes().remove(selected);
+					panel.repaint();
+			}
+		}}
+		);
+			
+		
 		GridBagConstraints gbc_tglbtnDel = new GridBagConstraints();
 		gbc_tglbtnDel.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnDel.gridx = 3;
@@ -264,17 +289,43 @@ public class FrmDrawing extends JFrame {
 		tglbtnMod = new JToggleButton("MODIFICATION");
 		tglbtnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglbtnDel.setEnabled(false);
-				tglbtnSel.setEnabled(false);
-				tglbtnDraw.setEnabled(false);
-
-				tglbtnPoint.setEnabled(true);
-				tglbtnLine.setEnabled(true);
-				tglbtnRectangle.setEnabled(true);
-				tglbtnCircle.setEnabled(true);
-				tglbtnDonut.setEnabled(true);
-
+				Shape selected=panel.getSelected();
+				if (selected!=null) {
+					if(selected instanceof Point) {
+						Point point=(Point)selected;
+						DlgPoint dlg=new DlgPoint();
+						dlg.setPoint(point);
+						dlg.setModal(true);
+						dlg.setVisible(true);
+					} else if(selected instanceof Line) {
+						Line line=(Line)selected;
+						DlgLine dlg=new DlgLine();
+						dlg.setLine(line);
+						dlg.setModal(true);
+						dlg.setVisible(true);
+					} else if(selected instanceof Rectangle) {
+						Rectangle rectangle=(Rectangle)selected;
+						DlgRectangle dlg=new DlgRectangle();
+						dlg.setRectangle(rectangle);
+						dlg.setModal(true);
+						dlg.setVisible(true);
+					} else if(selected instanceof Circle) {
+						Circle circle=(Circle)selected;
+						DlgAddDelete dlg=new DlgAddDelete();
+						dlg.setCircle(circle);;
+						dlg.setModal(true);
+						dlg.setVisible(true);
+					} else if (selected instanceof Donut) {
+						Donut donut=(Donut)selected;
+						DlgDonut dlg=new DlgDonut();
+						dlg.setDonut(donut);
+						dlg.setModal(true);
+						dlg.setVisible(true);
+					}
+				}
+				panel.repaint();
 			}
+			
 		});
 		GridBagConstraints gbc_tglbtnMod = new GridBagConstraints();
 		gbc_tglbtnMod.insets = new Insets(0, 0, 5, 5);
@@ -351,9 +402,13 @@ public class FrmDrawing extends JFrame {
 				dlg.setModal(true);
 				dlg.setVisible(true);
 			}
+			
 		}
 
 	}
+
+
+
 
 	private ActionListener btnEdgeColorListener() {
 		return new ActionListener() {
@@ -377,13 +432,7 @@ public class FrmDrawing extends JFrame {
 		};
 	}
 
-	public Color geteColor() {
-		return eColor;
-	}
 
-	public void seteColor(Color eColor) {
-		this.eColor = eColor;
-	}
 
 	public JToggleButton getTglbtnPoint() {
 		return tglbtnPoint;
@@ -465,9 +514,18 @@ public class FrmDrawing extends JFrame {
 		return workButtons;
 	}
 
-	public Object getActiveInnerColor() {
+
+	public Color getEColor() {
 		// TODO Auto-generated method stub
-		return null;
+		return eColor;
 	}
+
+
+	public Color getIColor() {
+		// TODO Auto-generated method stub
+		return iColor;
+	}
+
+	
 
 }

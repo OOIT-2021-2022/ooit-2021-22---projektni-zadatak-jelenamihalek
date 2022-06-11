@@ -35,6 +35,7 @@ public class DlgAddDelete extends JDialog {
 	 private DlgAddDelete dialog;
 	 private Circle circle;
 	 protected boolean isOk;
+	 private Color iColor,eColor;
 	
 	JButton okButton;
 
@@ -201,23 +202,6 @@ public class DlgAddDelete extends JDialog {
 		
 	}
 
-	public JTextField getTextCX() {
-		return textCX;
-	}
-
-	
-
-	public JTextField getTextCY() {
-		return textCY;
-	}
-
-	
-	public JTextField getTextR() {
-		return textR;
-	}
-
-
-
 
 	
 
@@ -248,14 +232,26 @@ public class DlgAddDelete extends JDialog {
 		
 	}
 
-	
 
-	public JButton getOkButton() {
-		return okButton;
+	public int getRadius() {
+		// TODO Auto-generated method stub
+		return circle.getRadius();
 	}
 
-	public void setOkButton(JButton okButton) {
-		this.okButton = okButton;
+	public Color getiColor() {
+		return iColor;
+	}
+
+	public void setiColor(Color iColor) {
+		this.iColor = iColor;
+	}
+
+	public Color geteColor() {
+		return eColor;
+	}
+
+	public void seteColor(Color eColor) {
+		this.eColor = eColor;
 	}
 	
 	

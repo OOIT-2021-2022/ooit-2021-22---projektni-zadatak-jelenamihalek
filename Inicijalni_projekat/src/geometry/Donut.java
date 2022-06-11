@@ -7,15 +7,22 @@ import java.awt.Graphics;
 public class Donut extends Circle {
 
 	private int innerRadius;
-
-	public Donut() {
+    public Donut() {};
+    
+    public Donut(Point center, int radius, int innerRadius) {
+		super(center, radius);
+		this.innerRadius = innerRadius;
 	}
-    public Donut (Point center, int radius, int innerRadius) {
-    	//this.center=center;
-    	//setRadius(radius);
-    	super(center,radius);
-    	this.innerRadius=innerRadius;
-    }
+	
+	
+	public Donut(Point center, int radius, int innerRadius, Color eColor, Color iColor) { 
+		
+		this.center=center;
+		this.radius=radius;
+		this.innerRadius=innerRadius;
+		seteColor(eColor);
+		setiColor(iColor);
+	}
 	public Donut(Point center, int radius, int innerRadius, boolean selected) {
 		//this.center = center;//jer je definisano kao protected u circle
 	   //	setRadius(radius);//jer je private,iako se ne nalazi u Donut, odlazi u circle i tamo pronalazi metodu
@@ -23,6 +30,7 @@ public class Donut extends Circle {
 		this(center,radius,innerRadius);
 		setSelected(selected);
 	}
+
 		
 	public int compareTo(Object obj)
 	{

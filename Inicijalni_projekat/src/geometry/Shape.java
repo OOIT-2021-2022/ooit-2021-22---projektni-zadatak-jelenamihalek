@@ -1,10 +1,13 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public abstract class Shape implements Moveable, Comparable {
 
 	private boolean selected;
+	protected Color eColor;
+	protected Color iColor;
 
 	public Shape() {
 	};
@@ -27,4 +30,21 @@ public abstract class Shape implements Moveable, Comparable {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
+
+	public Color geteColor() {
+		return eColor;
+	}
+
+	public void seteColor(Color eColor) {
+		this.eColor = eColor;
+	}
+
+	public Color getiColor() {
+		return iColor;
+	}
+
+	public void setiColor(Color iColor) {
+		this.iColor = iColor;
+	}
+	
 }

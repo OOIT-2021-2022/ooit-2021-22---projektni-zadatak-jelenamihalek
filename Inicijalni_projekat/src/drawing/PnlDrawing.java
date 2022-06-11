@@ -33,6 +33,11 @@ private Shape selected;
 	
 	public PnlDrawing(FrmDrawing frame) {
 		 this.frame=frame;
+		 addMouseListener(new MouseAdapter () {
+			 public void mouseClicked(MouseEvent arg0) {
+				 thisMouseClicked(arg0);
+			 } 
+		 });
 		
 	}
 		
@@ -43,7 +48,19 @@ private Shape selected;
 				super.paint(g);
 				Iterator<Shape> it =shapes.iterator();
 				while(it.hasNext())
-					it.next().draw(g);
+				{Shape s=it.next();
+				if(s instanceof Point) {
+					((Point)s).draw(g);
+				} else if (s instanceof Line) {
+					((Line)s).draw(g);
+				} else if (s instanceof Rectangle) {
+					((Rectangle)s).draw(g);
+				} else if (s instanceof Circle) {
+					((Circle)s).draw(g);
+				} else if (s instanceof Donut) {
+					((Donut)s).draw(g);
+				}
+				}
 			}
 			//prolazi kroz oblike,
 			//odlazi u shape i ostale klase i trazi u svakoj klasi metodu paint
@@ -85,17 +102,9 @@ private Shape selected;
 				return shapes;
 			}
 
-			public void setShapes(ArrayList<Shape> shapes) {
-				this.shapes = shapes;
-			}
 			
-			public FrmDrawing getFrame() {
-				return frame;
-			}
-
-			public void setFrame(FrmDrawing frame) {
-				this.frame = frame;
-			}
+	
+	
 
 			public Point getStartPoint() {
 				return startPoint;
@@ -128,7 +137,8 @@ private Shape selected;
 							selected.setSelected(true);
 						}
 						
-					} else if (frame.getTglbtnDraw().isSelected()) {
+					} 
+					else if (frame.getTglbtnDraw().isSelected()) {
 							Iterator<Shape> it=shapes.iterator();
 							while(it.hasNext()) {
 								Shape shape=it.next();
@@ -136,14 +146,32 @@ private Shape selected;
 							}
 						
 							 if (frame.getTglbtnPoint().isSelected()) {
-							shapes.add(new Point(x, y));
+							shapes.add(new Point(x, y,frame.getEColor()));
 						}else if(frame.getTglbtnLine().isSelected()) {
 							if(startPoint==null)
 								startPoint=new Point(x, y);
 							else {
-								shapes.add(new Line(startPoint, new Point(x, y)));
+								shapes.add(new Line(startPoint, new Point(x, y,frame.getEColor())));
 								startPoint=null;
 							}
+						}
+						else if (frame.getTglbtnCircle().isSelected()) {
+							DlgAddDelete dlg=new DlgAddDelete();
+							dlg.setVisible(true);
+							shapes.add(new Circle(new Point(x, y),dlg.getRadius(), frame.getEColor(), frame.getIColor()));
+							
+						} else if (frame.getTglbtnDonut().isSelected()) {
+							DlgDonut dlg = new DlgDonut();
+							dlg.setVisible(true);
+							
+							//shapes.add(new Donut(new Point(x, y), dlg.getRadius(), dlg.getInnerRadius(), frame.getEColor(), frame.getIColor()));
+					
+						}
+						else if (frame.getTglbtnRectangle().isSelected()) {
+							DlgRectangle dlg=new DlgRectangle();
+							dlg.setVisible(true);
+								shapes.add(new Rectangle(new Point (x,y), dlg.getHeight(), dlg.getWidth(), frame.getEColor(), frame.getIColor()));
+				
 						}
 						
 					}

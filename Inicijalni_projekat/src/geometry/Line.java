@@ -25,6 +25,12 @@ public class Line extends Shape{
 		this.startPoint=startPoint;
 		this.endPoint=endPoint;
 	}
+	public Line(Point startPoint, Point endPoint, Color eColor) {
+		
+		this.startPoint=startPoint;
+		this.endPoint=endPoint;
+		seteColor(eColor);
+	}
 
 	public void moveTo(int x,int y)
 	{

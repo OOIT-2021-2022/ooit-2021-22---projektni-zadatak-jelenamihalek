@@ -1,6 +1,7 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -229,5 +230,16 @@ public class DlgDonut extends JDialog {
 	public JPanel getContentPanel() {
 		return contentPanel;
 	}
+
+	public int getRadius() {
+		// TODO Auto-generated method stub
+		return donut.getRadius();
+	}
+
+	public int getInnerRadius() {
+		// TODO Auto-generated method stub
+		return donut.getInnerRadius();
+	}
+
 
 }

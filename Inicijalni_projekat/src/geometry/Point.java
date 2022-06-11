@@ -97,6 +97,12 @@ public class Point extends Shape {
 	//this.selected=selected;
 	
 	};
+	public Point (int x, int y, Color eColor)
+	{
+		this.x=x;
+		this.y=y;
+		seteColor(eColor);
+	}
 
 
 	
@@ -111,6 +117,7 @@ public class Point extends Shape {
 	 */
 	
 	
+
 	//equals je metoda instance i poziva se nad objektom
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {

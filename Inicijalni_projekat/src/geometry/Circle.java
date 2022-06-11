@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class Circle extends Shape {
 
 	protected Point center; //protected da bi sve klase koje nasledjuju mogke da vide
-	private int radius;
+	protected int radius;
 	
 	
 
@@ -23,6 +23,16 @@ public class Circle extends Shape {
 		this(center, radius);
 		setSelected(selected);
 	}
+
+	public Circle(Point center, int radius, Color eColor, Color iColor) {
+		this.center = center;
+		this.radius = radius;
+		seteColor(eColor);
+		setiColor(iColor);
+	}
+
+
+
 
 	public boolean contains (int x, int y)
 	{
