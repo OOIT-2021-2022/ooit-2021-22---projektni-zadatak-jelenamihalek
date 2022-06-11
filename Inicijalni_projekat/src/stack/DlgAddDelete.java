@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -253,6 +254,20 @@ public class DlgAddDelete extends JDialog {
 	public void seteColor(Color eColor) {
 		this.eColor = eColor;
 	}
+
+	public JTextField getTextCX() {
+		return textCX;
+	}
+
+	public JTextField getTextCY() {
+		return textCY;
+	}
+
+	public JTextField getTextR() {
+		return textR;
+	}
+
+	
 	
 	
 	
