@@ -171,10 +171,10 @@ public class DlgLine extends JDialog {
 									"Error!", JOptionPane.ERROR_MESSAGE);
 							return;
 					}
-						eColor = JColorChooser.showDialog(null, "EDGE", eColor);
+						eColor = JColorChooser.showDialog(null, "COLOR", eColor);
 						line=new Line(new Point (x1,y1), new Point (x2,y2), false); //false jer nije selektovana
 					   line.setColor(eColor);
-						dispose();
+						setVisible(false);
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
 								JOptionPane.ERROR_MESSAGE);
@@ -257,6 +257,14 @@ public class DlgLine extends JDialog {
 		textEPX.setText("" + line.getEndPoint().getX());
 		textEPY.setText("" + line.getEndPoint().getY());
 		eColor = line.getColor();
+	}
+
+	public Color geteColor() {
+		return eColor;
+	}
+
+	public void seteColor(Color eColor) {
+		this.eColor = eColor;
 	}
 	
 	

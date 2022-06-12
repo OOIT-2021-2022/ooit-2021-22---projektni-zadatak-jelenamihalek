@@ -169,7 +169,7 @@ public class DlgAddDelete extends JDialog {
 							JOptionPane.showMessageDialog(null,  "X and Y must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
 							
 						else
-						circle=new Circle(center,radius);
+						circle=new Circle(center,radius, eColor,iColor);
 						setVisible(false);
 						}
 						catch(Exception ex){
@@ -226,11 +226,17 @@ public class DlgAddDelete extends JDialog {
 		this.circle = circle;
 	}
 
-	public void setCircle(Point center, int radius) {
+	public void setCircle(Point center, int radius, Color eColor, Color iColor) {
 		textCX.setText("" + circle.getCenter().getX());
 		textCY.setText("" + circle.getCenter().getY());
 		textR.setText("" + circle.getRadius());
-		
+		eColor = circle.geteColor();
+		iColor = circle.getiColor();
+	}
+	public void setPoint (Point startPoint)
+	{
+		textCX.setText("" + circle.getCenter().getX());
+		textCY.setText("" + circle.getCenter().getY());	
 	}
 
 
@@ -266,6 +272,7 @@ public class DlgAddDelete extends JDialog {
 	public JTextField getTextR() {
 		return textR;
 	}
+
 
 	
 	

@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,6 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import geometry.Donut;
+import geometry.Point;
+import geometry.Rectangle;
 import stack.DlgAddDelete;
 
 import java.awt.event.ActionListener;
@@ -30,6 +33,8 @@ public class DlgDonut extends JDialog {
 	private JTextField textIR;
 	private DlgAddDelete dialog;
 	private Donut donut;
+	private Color eColor, iColor;
+	private Point startPoint;
 	
 
 	/**
@@ -157,9 +162,28 @@ public class DlgDonut extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(Integer.parseInt(textR.getText())<0 || Integer.parseInt(textIR.getText())<0) 
-							JOptionPane.showMessageDialog(null,  "Radius and inner radius must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
-							
+						try
+						{
+							int x = Integer.parseInt(textCX.getText());
+							int y = Integer.parseInt(textCY.getText());
+							int radius = Integer.parseInt(textR.getText());
+							int innerRadius = Integer.parseInt(textIR.getText());
+							if(x<0 || y<0 || radius<=0 ||innerRadius<=0 ||radius<=innerRadius) 
+							{	JOptionPane.showMessageDialog(null,  "Radius, inner radius must be greater than 0 ! Also radius must bre greater than inner radius! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
+						
+						return;
+						}
+
+						eColor = JColorChooser.showDialog(null, "EDGE COLOR", eColor);
+						iColor = JColorChooser.showDialog(null, "INNER COLOR", iColor);
+						donut=new Donut(new Point (x,y),radius, innerRadius,eColor, iColor); 
+						setVisible(false);
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -223,10 +247,7 @@ public class DlgDonut extends JDialog {
 		return donut;
 	}
 
-	public void setDonut(Donut donut) {
-		this.donut = donut;
-	}
-
+	
 	public JPanel getContentPanel() {
 		return contentPanel;
 	}
@@ -241,5 +262,41 @@ public class DlgDonut extends JDialog {
 		return donut.getInnerRadius();
 	}
 
+	public Color geteColor() {
+		return eColor;
+	}
 
+	public void seteColor(Color eColor) {
+		this.eColor = eColor;
+	}
+
+	public Color getiColor() {
+		return iColor;
+	}
+
+	public void setiColor(Color iColor) {
+		this.iColor = iColor;
+	}
+
+	public Point getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(Point startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public void setDonut(Donut donut) {
+		textCX.setText("" + donut.getCenter().getX());
+		textCY.setText("" + donut.getCenter().getY());
+		textR.setText("" + donut.getRadius());
+		textIR.setText("" + donut.getInnerRadius());
+		eColor = donut.geteColor();
+		iColor = donut.getiColor();
+		
+	}
+	public void setPoint(Point startPoint) {
+		textCX.setText("" + donut.getCenter().getX());
+		textCY.setText("" + donut.getCenter().getY());
+	}
 }

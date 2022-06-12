@@ -1,12 +1,14 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import geometry.Line;
+import geometry.Point;
 import geometry.Rectangle;
 import stack.DlgAddDelete;
 
@@ -29,6 +33,7 @@ public class DlgRectangle extends JDialog {
 	private JTextField textH;
 	private DlgAddDelete dialog;
 	private Rectangle rectangle;
+	private Color eColor, iColor;
 	/**
 	 * Launch the application.
 	 */
@@ -153,9 +158,31 @@ public class DlgRectangle extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(Integer.parseInt(textW.getText())<0 || Integer.parseInt(textH.getText())<0) 
-							JOptionPane.showMessageDialog(null,  "Width and height must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
+						try
+						{
+							int x = Integer.parseInt(textUPX.getText());
+							int y = Integer.parseInt(textUPY.getText());
+							int width = Integer.parseInt(textW.getText());
+							int height = Integer.parseInt(textH.getText());
+						
+						if(x<0 || y<0 || width<=0 || height<=0) 
+						{	JOptionPane.showMessageDialog(null,  "Width and height must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
+					
+						return;
+						}
+
+						eColor = JColorChooser.showDialog(null, "EDGE COLOR", eColor);
+						iColor = JColorChooser.showDialog(null, "INNER COLOR", iColor);
+						rectangle=new Rectangle(new Point (x,y),width, height,eColor, iColor); 
+						rectangle.seteColor(eColor);
+						rectangle.setiColor(iColor);
+						dispose();
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
+								JOptionPane.ERROR_MESSAGE);
 					}
+				}
+			
 				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -218,13 +245,27 @@ public class DlgRectangle extends JDialog {
 		return rectangle;
 	}
 
-	public void setRectangle(Rectangle rectangle) {
+	public void setRectangle() {
 		this.rectangle = rectangle;
+	}
+
+	public void setPoint(Point startPoint) {
+		textUPX.setText("" + rectangle.getUpperLeftPoint().getX());
+		textUPY.setText("" + rectangle.getUpperLeftPoint().getY());
 	}
 
 	public JPanel getContentPanel() {
 		return contentPanel;
 	}
+
+	public void setRectangle(Rectangle rectangle) {
+		textUPX.setText("" + rectangle.getUpperLeftPoint().getX());
+		textUPY.setText("" + rectangle.getUpperLeftPoint().getY());
+		textW.setText("" + rectangle.getWidth());
+		eColor = rectangle.geteColor();
+		iColor = rectangle.getiColor();
+	}
+
 
 	
 }

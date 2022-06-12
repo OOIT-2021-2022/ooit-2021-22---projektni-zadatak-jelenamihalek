@@ -133,7 +133,7 @@ public class DlgPoint extends JDialog {
 										"Error!", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							eColor = JColorChooser.showDialog(null, "EDGE", eColor);
+							eColor = JColorChooser.showDialog(null, "COLOR", eColor);
 							dispose();
 						} catch (Exception ex) {
 							JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
@@ -185,7 +185,7 @@ public class DlgPoint extends JDialog {
 
 	}
 
-	public void setColors(Color eColor) {
+	public void setColor(Color eColor) {
 
 		this.eColor = eColor;
 
