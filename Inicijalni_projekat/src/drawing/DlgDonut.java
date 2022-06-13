@@ -40,15 +40,7 @@ public class DlgDonut extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			DlgDonut dialog = new DlgDonut();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * Create the dialog.
@@ -298,5 +290,11 @@ public class DlgDonut extends JDialog {
 	public void setPoint(Point startPoint) {
 		textCX.setText("" + donut.getCenter().getX());
 		textCY.setText("" + donut.getCenter().getY());
+	}
+
+	public void setDonut(Point mouseClick) {
+		
+		textCX.setText("" + mouseClick.getX());
+		textCY.setText("" + mouseClick.getY());
 	}
 }

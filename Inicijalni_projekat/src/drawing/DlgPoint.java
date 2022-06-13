@@ -36,15 +36,7 @@ public class DlgPoint extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			DlgPoint dialog = new DlgPoint();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * Create the dialog.
@@ -189,7 +181,6 @@ public class DlgPoint extends JDialog {
 
 		this.eColor = eColor;
 
-		// TODO Auto-generated method stub
 
 	}
 

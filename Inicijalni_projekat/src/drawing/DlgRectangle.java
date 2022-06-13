@@ -37,15 +37,7 @@ public class DlgRectangle extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			DlgRectangle dialog = new DlgRectangle();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * Create the dialog.
@@ -266,6 +258,21 @@ public class DlgRectangle extends JDialog {
 		iColor = rectangle.getiColor();
 	}
 
+	public void seteColor(Color eColor) {
+		// TODO Auto-generated method stub
+		this.eColor=eColor;
+	}
+ public void setiColor(Color iColor)
+ {
+ this.iColor=iColor; 
+ }
+
+public void setRectangle(Point mouseClick) {
+	
+	textUPX.setText("" + mouseClick.getX());
+	textUPY.setText("" + mouseClick.getY());
+	
+}
 
 	
 }

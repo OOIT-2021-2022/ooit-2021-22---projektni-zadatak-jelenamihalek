@@ -36,15 +36,6 @@ public class DlgLine extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			DlgLine dialog = new DlgLine();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
@@ -265,6 +256,19 @@ public class DlgLine extends JDialog {
 
 	public void seteColor(Color eColor) {
 		this.eColor = eColor;
+	}
+
+	public void setLine(Point startPoint, Point mouseClick) {
+		textSPX.setText("" +startPoint.getX());
+		textSPY.setText("" + startPoint.getY());
+		textEPX.setText("" + mouseClick.getX());
+		textEPY.setText("" + mouseClick.getY());
+		
+	}
+
+	public void setLine(Point startPoint, Point mouseClick, Color eColor) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

@@ -43,15 +43,6 @@ public class DlgAddDelete extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			DlgAddDelete dialog = new DlgAddDelete();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
@@ -271,6 +262,15 @@ public class DlgAddDelete extends JDialog {
 
 	public JTextField getTextR() {
 		return textR;
+	}
+
+
+
+
+	public void setCircle(Point mouseClick) {
+		
+		textCX.setText("" + mouseClick.getX());
+		textCY.setText("" + mouseClick.getY());
 	}
 
 
