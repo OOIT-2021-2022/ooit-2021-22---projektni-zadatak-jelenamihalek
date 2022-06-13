@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import geometry.Point;
@@ -59,9 +60,9 @@ public class DlgPoint extends JDialog {
 		contentPanel.add(panelCenter);
 		GridBagLayout gbl_panelCenter = new GridBagLayout();
 		gbl_panelCenter.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_panelCenter.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panelCenter.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_panelCenter.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_panelCenter.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panelCenter.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panelCenter.setLayout(gbl_panelCenter);
 
 		JLabel lblTitle = new JLabel("DRAW POINT");
@@ -106,7 +107,21 @@ public class DlgPoint extends JDialog {
 		gbc_texTY.gridy = 4;
 		panelCenter.add(textY, gbc_texTY);
 		textY.setColumns(10);
+		
+		JButton btnColor= new JButton("COLOR");
+		btnColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eColor = JColorChooser.showDialog(null, "Choose a color", eColor);
+				if (eColor == null) eColor = Color.BLACK;
+			}
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 6;
+		panelCenter.add(btnColor, gbc_btnNewButton);
 
+	
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JPanel buttonPane = new JPanel();
@@ -125,7 +140,8 @@ public class DlgPoint extends JDialog {
 										"Error!", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							eColor = JColorChooser.showDialog(null, "COLOR", eColor);
+							
+							point = new Point(x,y, eColor);
 							dispose();
 						} catch (Exception ex) {
 							JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
@@ -174,12 +190,14 @@ public class DlgPoint extends JDialog {
 	public void setPoint(Point point) {
 		textX.setText("" + point.getX());
 		textY.setText("" + point.getY());
+		setColor(eColor);
 
 	}
 
 	public void setColor(Color eColor) {
 
-		this.eColor = eColor;
+		this.eColor =JColorChooser.showDialog(null, "Choose a color", eColor);
+		if (eColor == null) eColor = Color.BLACK; ;
 
 
 	}

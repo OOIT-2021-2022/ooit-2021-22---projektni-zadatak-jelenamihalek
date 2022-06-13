@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.GridLayout;
 
-public class FrmDrawing extends JFrame {
+public class FrmDrawing extends JFrame  {
 
 	/**
 	 * 
@@ -104,7 +104,7 @@ public class FrmDrawing extends JFrame {
 		gbc_panel.gridx = 2;
 		gbc_panel.gridy = 2;
 
-		panel.setBackground(new Color(0, 250, 0));
+		panel.setBackground(new Color(192, 192, 192));
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 0 };
 		gbl_panel.rowHeights = new int[] { 0 };
@@ -249,20 +249,16 @@ public class FrmDrawing extends JFrame {
 						Line line = (Line) selected;
 						DlgLine dlg = new DlgLine();
 						dlg.setLine(line);
-						dlg.setModal(true);
 						dlg.setVisible(true);
 					} else if (selected instanceof Rectangle) {
 						Rectangle rectangle = (Rectangle) selected;
 						DlgRectangle dlg = new DlgRectangle();
 						dlg.setVisible(true);
 						dlg.setRectangle(rectangle);
-						dlg.setModal(true);
 					} else if (selected instanceof Circle) {
 						Circle circle = (Circle) selected;
-						DlgAddDelete dlg = new DlgAddDelete();
+						DlgCircle dlg = new DlgCircle();
 						dlg.setCircle(circle);
-						;
-						dlg.setModal(true);
 						dlg.setVisible(true);
 					} else if (selected instanceof Donut) {
 						Donut donut = (Donut) selected;
@@ -347,7 +343,7 @@ public class FrmDrawing extends JFrame {
 						panel.add(dlg.getRectangle());
 					return;
 				} else if (tglbtnCircle.isSelected()) {
-					DlgAddDelete dlg = new DlgAddDelete();
+					DlgCircle dlg = new DlgCircle();
 					dlg.setCircle(mouseClick);
 					dlg.seteColor(eColor);
 					dlg.setiColor(iColor);

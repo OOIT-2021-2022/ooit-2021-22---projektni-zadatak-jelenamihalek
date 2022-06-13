@@ -163,11 +163,11 @@ public class DlgRectangle extends JDialog {
 						return;
 						}
 
-						eColor = JColorChooser.showDialog(null, "EDGE COLOR", eColor);
-						iColor = JColorChooser.showDialog(null, "INNER COLOR", iColor);
-						rectangle=new Rectangle(new Point (x,y),width, height,eColor, iColor); 
-						rectangle.seteColor(eColor);
-						rectangle.setiColor(iColor);
+						eColor = JColorChooser.showDialog(null, "EDGE COLOR", Color.black);
+						iColor = JColorChooser.showDialog(null, "INNER COLOR", Color.white);
+						rectangle=new Rectangle(new Point (x,y),width, height,geteColor(), getiColor()); 
+						rectangle.seteColor(geteColor());
+						rectangle.setiColor(getiColor());
 						dispose();
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
@@ -254,8 +254,9 @@ public class DlgRectangle extends JDialog {
 		textUPX.setText("" + rectangle.getUpperLeftPoint().getX());
 		textUPY.setText("" + rectangle.getUpperLeftPoint().getY());
 		textW.setText("" + rectangle.getWidth());
-		eColor = rectangle.geteColor();
-		iColor = rectangle.getiColor();
+		seteColor(eColor);
+		setiColor(iColor);
+		
 	}
 
 	public void seteColor(Color eColor) {
@@ -266,6 +267,15 @@ public class DlgRectangle extends JDialog {
  {
  this.iColor=iColor; 
  }
+ 
+
+public Color geteColor() {
+	return eColor;
+}
+
+public Color getiColor() {
+	return iColor;
+}
 
 public void setRectangle(Point mouseClick) {
 	

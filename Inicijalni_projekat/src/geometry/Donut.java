@@ -66,9 +66,18 @@ public class Donut extends Circle {
 		else return false;
 		}
 	
+	public void fill(Graphics g) {
+		g.setColor(getiColor());
+		super.fill(g);
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillOval(getCenter().getX() - this.innerRadius,
+					getCenter().getY() - this.innerRadius,
+					this.innerRadius * 2 - 2,
+					this.innerRadius * 2 - 2);
+	}
 
 	public void draw (Graphics g)
-	{
+	{     g.setColor(geteColor());
 		//todo auto-generated method stub
 		super.draw(g);
 		g.drawOval(center.getX()-innerRadius, center.getY()-innerRadius, innerRadius*2, innerRadius*2);
@@ -81,10 +90,8 @@ public class Donut extends Circle {
 			g.drawRect(center.getX() - 2, center.getY() + innerRadius - 2, 4, 4);
 			g.setColor(Color.black);
 		}
-
-	
-		
-	}
+       this.fill(g);
+}
 
 	public boolean contains(int x, int y) {
 

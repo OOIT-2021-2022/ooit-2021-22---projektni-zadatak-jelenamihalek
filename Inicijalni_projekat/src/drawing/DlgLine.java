@@ -58,9 +58,9 @@ public class DlgLine extends JDialog {
 		contentPanel.add(panelCenter);
 		GridBagLayout gbl_panelCenter = new GridBagLayout();
 		gbl_panelCenter.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panelCenter.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panelCenter.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panelCenter.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelCenter.setLayout(gbl_panelCenter);
 		
 		JLabel lblTitle = new JLabel("DRAW LINE");
@@ -127,7 +127,7 @@ public class DlgLine extends JDialog {
 		JLabel lblEPY = new JLabel("End point Y:");
 		GridBagConstraints gbc_lblEPY = new GridBagConstraints();
 		gbc_lblEPY.anchor = GridBagConstraints.EAST;
-		gbc_lblEPY.insets = new Insets(0, 0, 0, 5);
+		gbc_lblEPY.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEPY.gridx = 0;
 		gbc_lblEPY.gridy = 6;
 		panelCenter.add(lblEPY, gbc_lblEPY);
@@ -135,12 +135,25 @@ public class DlgLine extends JDialog {
 		textEPY = new JTextField();
 		GridBagConstraints gbc_textEPY = new GridBagConstraints();
 		gbc_textEPY.gridwidth = 2;
-		gbc_textEPY.insets = new Insets(0, 0, 0, 5);
+		gbc_textEPY.insets = new Insets(0, 0, 5, 5);
 		gbc_textEPY.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textEPY.gridx = 1;
 		gbc_textEPY.gridy = 6;
 		panelCenter.add(textEPY, gbc_textEPY);
 		textEPY.setColumns(10);
+		
+		JButton btnColor = new JButton("COLOR");
+		btnColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eColor = JColorChooser.showDialog(null, "Choose a color", eColor);
+				if (eColor == null) eColor = Color.BLACK;
+			}
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 8;
+		panelCenter.add(btnColor, gbc_btnNewButton);
 		
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
@@ -162,9 +175,8 @@ public class DlgLine extends JDialog {
 									"Error!", JOptionPane.ERROR_MESSAGE);
 							return;
 					}
-						eColor = JColorChooser.showDialog(null, "COLOR", eColor);
-						line=new Line(new Point (x1,y1), new Point (x2,y2), false); //false jer nije selektovana
-					   line.setColor(eColor);
+						line=new Line(new Point (x1,y1), new Point (x2,y2)); 
+					    line.seteColor(eColor);
 						setVisible(false);
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",

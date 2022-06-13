@@ -76,12 +76,18 @@ public class Circle extends Shape {
 		} else 
 			return false;
 		}
-	
+	public void fill(Graphics g) {
+		g.setColor(getiColor());
+		g.fillOval(this.center.getX() - this.radius + 1, this.center.getY() - this.radius + 1,
+				this.radius*2 - 2, this.radius*2 - 2);
+	}
 
 	public void draw (Graphics g)
 	{
 		//todo auto-generated method stub
-		g.drawOval(center.getX()-radius, center.getY()-radius, radius*2,radius*2);	
+		g.setColor(geteColor());
+		g.drawOval(center.getX()-radius, center.getY()-radius, radius*2,radius*2);
+		this.fill(g);
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
 			g.drawRect(center.getX() - 2, center.getY() - 2, 4, 4);
@@ -129,6 +135,8 @@ public class Circle extends Shape {
 		// Center=(x,y), radius= radius
 		return "Center=" + center + ", radius=" + radius;
 	}
+
+
 
 	
 }

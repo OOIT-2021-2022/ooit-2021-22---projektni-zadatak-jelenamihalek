@@ -81,11 +81,15 @@ public boolean contains (Point clickPoint)
 			return false;
 	}
 	
-	
+	public void fill(Graphics g) {
+		g.setColor(getiColor());
+		g.fillRect(this.upperLeftPoint.getX() + 1, this.upperLeftPoint.getY() + 1, this.width - 1, this.height - 1);
+	}
 	public void draw (Graphics g)
-	{
-		//todo auto-generated method stub
-		g.drawRect(upperLeftPoint.getX(),upperLeftPoint.getY(),width,height);
+	
+	{      g.setColor(geteColor());
+	      g.drawRect(upperLeftPoint.getX(),upperLeftPoint.getY(),width,height);
+	      this.fill(g);
 	
 		if(isSelected()) {
 			g.setColor(Color.blue);
