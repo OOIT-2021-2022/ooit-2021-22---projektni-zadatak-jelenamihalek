@@ -112,15 +112,8 @@ public class FrmDrawing extends JFrame {
 		gbl_panel.rowWeights = new double[] { Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		buttonGroupShapes.add(tglbtnPoint);
-		buttonGroupShapes.add(tglbtnLine);
-		buttonGroupShapes.add(tglbtnCircle);
-		buttonGroupShapes.add(tglbtnDonut);
-		buttonGroupShapes.add(tglbtnRectangle);
-		workButtons.add(tglbtnDraw);
-		workButtons.add(tglbtnSel);
-		workButtons.add(tglbtnDel);
-		workButtons.add(tglbtnMod);
+		
+		
 
 		JPanel panelWest = new JPanel();
 		contentPane.add(panelWest, BorderLayout.WEST);
@@ -156,6 +149,7 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnPoint.gridx = 0;
 		gbc_tglbtnPoint.gridy = 0;
 		panelCenter.add(tglbtnPoint, gbc_tglbtnPoint);
+		buttonGroupShapes.add(tglbtnPoint);
 
 		tglbtnLine = new JToggleButton("LINE");
 		GridBagConstraints gbc_tglbtnLine = new GridBagConstraints();
@@ -163,12 +157,14 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnLine.gridx = 0;
 		gbc_tglbtnLine.gridy = 1;
 		panelCenter.add(tglbtnLine, gbc_tglbtnLine);
+		buttonGroupShapes.add(tglbtnLine);
 		tglbtnRectangle = new JToggleButton("RECTANGLE");
 		GridBagConstraints gbc_tglbtnRectangle = new GridBagConstraints();
 		gbc_tglbtnRectangle.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnRectangle.gridx = 0;
 		gbc_tglbtnRectangle.gridy = 2;
 		panelCenter.add(tglbtnRectangle, gbc_tglbtnRectangle);
+		buttonGroupShapes.add(tglbtnRectangle);
 
 		tglbtnCircle = new JToggleButton("CIRCLE");
 		GridBagConstraints gbc_tglbtnCircle = new GridBagConstraints();
@@ -176,6 +172,7 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnCircle.gridx = 0;
 		gbc_tglbtnCircle.gridy = 3;
 		panelCenter.add(tglbtnCircle, gbc_tglbtnCircle);
+		buttonGroupShapes.add(tglbtnCircle);
 
 		tglbtnDonut = new JToggleButton("DONUT");
 		GridBagConstraints gbc_tglbtnDonut = new GridBagConstraints();
@@ -183,6 +180,7 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnDonut.gridx = 0;
 		gbc_tglbtnDonut.gridy = 4;
 		panelCenter.add(tglbtnDonut, gbc_tglbtnDonut);
+		buttonGroupShapes.add(tglbtnDonut);
 
 		JPanel panelSouth = new JPanel();
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
@@ -194,13 +192,8 @@ public class FrmDrawing extends JFrame {
 		panelSouth.setLayout(gbl_panelSouth);
 
 		tglbtnSel = new JToggleButton("SELECT");
-		tglbtnSel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				panel.deselect();
-
-			}
-		});
+		workButtons.add(tglbtnSel);
+		
 
 		GridBagConstraints gbc_tglbtnSel = new GridBagConstraints();
 		gbc_tglbtnSel.insets = new Insets(0, 0, 5, 5);
@@ -209,7 +202,7 @@ public class FrmDrawing extends JFrame {
 		panelSouth.add(tglbtnSel, gbc_tglbtnSel);
 
 		tglbtnDraw = new JToggleButton("DRAW");
-
+        workButtons.add(tglbtnDraw);
 		GridBagConstraints gbc_tglbtnDraw = new GridBagConstraints();
 		gbc_tglbtnDraw.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnDraw.gridx = 2;
@@ -217,6 +210,7 @@ public class FrmDrawing extends JFrame {
 		panelSouth.add(tglbtnDraw, gbc_tglbtnDraw);
 
 		tglbtnDel = new JToggleButton("DELETE");
+		workButtons.add(tglbtnDel);
 		tglbtnDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.isEmpty()) {
@@ -242,6 +236,7 @@ public class FrmDrawing extends JFrame {
 		panelSouth.add(tglbtnDel, gbc_tglbtnDel);
 
 		tglbtnMod = new JToggleButton("MODIFICATION");
+		workButtons.add(tglbtnMod);
 		tglbtnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Shape selected = panel.getSelected();
@@ -385,14 +380,11 @@ public class FrmDrawing extends JFrame {
 							JOptionPane.showInputDialog(null, "Shape is selected", "ERROR",
 									JOptionPane.INFORMATION_MESSAGE);
 						}
-					}
-
-					if (selected != null) {
-						selected.setSelected(true);
-						{
-							if (tglbtnMod.isSelected() == true) {
-								selected = panel.getSelected();
-								if (selected != null) {
+				
+						
+						else if (tglbtnMod.isSelected() == true) {
+								
+								if (panel.getSelected() != null) {
 									if (selected instanceof Point) {
 										Point point = (Point) selected; // downcasting, moramo ga iz Shape pretvoriti u
 																		// Point
@@ -429,14 +421,15 @@ public class FrmDrawing extends JFrame {
 									}
 
 								}
+							
+									
 							}
 						}
 					}
-				}
-
-			}
-		};
-	};
+				};
+		}; };
+	
+	
 
 	public JToggleButton getTglbtnPoint() {
 		return tglbtnPoint;
@@ -527,5 +520,5 @@ public class FrmDrawing extends JFrame {
 		// TODO Auto-generated method stub
 		return iColor;
 	}
-
 }
+

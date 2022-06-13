@@ -98,9 +98,18 @@ public class PnlDrawing extends JPanel {
 	}
 
 	public Shape getSelected() {
-
+		Iterator<Shape> it = shapes.iterator();
+		while (it.hasNext())
+			{       
+			Shape now=it.next();
+			
+			if (now.isSelected()==true)
+			
+		       return now;}
 		return selected;
+			
 	}
+
 
 	public void setSelected(Shape selected) {
 		this.selected = selected;
