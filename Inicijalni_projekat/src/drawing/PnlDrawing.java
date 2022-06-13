@@ -55,9 +55,9 @@ public class PnlDrawing extends JPanel {
 	}
 
 
-	public void select(Point point) {
+	public void select(Point clickPoint) {
 		for (int i = shapes.size() - 1; i >= 0; i--) {
-			if (shapes.get(i).contains(point.getX(), point.getY())) {
+			if (shapes.get(i).contains(clickPoint.getX(), clickPoint.getY())) {
 				shapes.get(i).setSelected(true);
 				repaint();
 				return;

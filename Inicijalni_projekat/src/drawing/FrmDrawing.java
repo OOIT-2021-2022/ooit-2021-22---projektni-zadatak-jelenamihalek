@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.GridLayout;
 
-public class FrmDrawing extends JFrame  {
+public class FrmDrawing extends JFrame {
 
 	/**
 	 * 
@@ -196,6 +196,9 @@ public class FrmDrawing extends JFrame  {
 		tglbtnSel = new JToggleButton("SELECT");
 		tglbtnSel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				panel.deselect();
+
 			}
 		});
 
@@ -206,7 +209,6 @@ public class FrmDrawing extends JFrame  {
 		panelSouth.add(tglbtnSel, gbc_tglbtnSel);
 
 		tglbtnDraw = new JToggleButton("DRAW");
-		
 
 		GridBagConstraints gbc_tglbtnDraw = new GridBagConstraints();
 		gbc_tglbtnDraw.insets = new Insets(0, 0, 5, 5);
@@ -217,14 +219,19 @@ public class FrmDrawing extends JFrame  {
 		tglbtnDel = new JToggleButton("DELETE");
 		tglbtnDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				if (panel.isEmpty()) {
 					JOptionPane.showInputDialog(null, "There are no shapes!", "WARNING");
 					return;
-
-				} else if (JOptionPane.showConfirmDialog(null, "Do you really want to delete selected shape?", "Yes",
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0)
-					panel.removeSelected();
+				} else {
+					String[] answer = { "YES", "NO" };
+					{
+						int option = JOptionPane.showOptionDialog(null, "Do you want to delete selected shape?",
+								"WARNING!", JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, answer, answer[0]);
+						if (option == 0) {
+							panel.removeSelected();
+						}
+					}
+				}
 			}
 		});
 
@@ -301,161 +308,135 @@ public class FrmDrawing extends JFrame  {
 				Point mouseClick = new Point(e.getX(), e.getY());
 				panel.deselect();
 
-				if (tglbtnDraw.isSelected()==true) {
+				if (tglbtnDraw.isSelected() == true) {
 					panel.select(mouseClick);
 					{
+						if (tglbtnPoint.isSelected()) {
+							DlgPoint dlg = new DlgPoint();
+							dlg.setPoint(mouseClick);
+							dlg.setColor(eColor);
+							dlg.setVisible(true);
+							if (dlg.getPoint() != null)
+								panel.add(dlg.getPoint());
+							return;
+
+						} else if (tglbtnLine.isSelected()) {
+							if (doubleClick == true) {
+								DlgLine dlg = new DlgLine();
+								dlg.setLine(startPoint, mouseClick);
+								dlg.seteColor(eColor);
+								dlg.setVisible(true);
+								if (dlg.getLine() != null)
+									panel.add(dlg.getLine());
+
+								doubleClick = false;
+								return;
+							}
+							startPoint = mouseClick;
+							doubleClick = true;
+							return;
+
+						} else if (tglbtnRectangle.isSelected()) {
+							DlgRectangle dlg = new DlgRectangle();
+							dlg.setRectangle(mouseClick);
+							dlg.seteColor(eColor);
+							dlg.setiColor(iColor);
+							dlg.setVisible(true);
+
+							if (dlg.getRectangle() != null)
+								panel.add(dlg.getRectangle());
+							return;
+						} else if (tglbtnCircle.isSelected()) {
+							DlgCircle dlg = new DlgCircle();
+							dlg.setCircle(mouseClick);
+							dlg.seteColor(eColor);
+							dlg.setiColor(iColor);
+							dlg.setVisible(true);
+
+							if (dlg.getCircle() != null)
+								panel.add(dlg.getCircle());
+							return;
+						} else if (tglbtnDonut.isSelected()) {
+							DlgDonut dlg = new DlgDonut();
+							dlg.setDonut(mouseClick);
+							dlg.seteColor(eColor);
+							dlg.setiColor(iColor);
+							dlg.setVisible(true);
+
+							if (dlg.getDonut() != null)
+								panel.add(dlg.getDonut());
+							return;
+						}
+					}
+					;
+				}
 				
 
-				if (tglbtnPoint.isSelected()) {
-					DlgPoint dlg = new DlgPoint();
-					dlg.setPoint(mouseClick);
-					dlg.setColor(eColor);
-					dlg.setVisible(true);
-					if (dlg.getPoint() != null)
-						panel.add(dlg.getPoint());
-					return;
+				else if (tglbtnSel.isSelected() == true) {
+					panel.select(mouseClick);
+					Shape selected = null;
+					Iterator<Shape> it = shapes.iterator();
+					while (it.hasNext()) {
 
-				} else if (tglbtnLine.isSelected()) {
-					if (doubleClick==true) 
-					{
-						DlgLine dlg = new DlgLine();
-						dlg.setLine(startPoint,mouseClick);
-						dlg.seteColor(eColor);
-						dlg.setVisible(true);
-						if (dlg.getLine() != null)
-							panel.add(dlg.getLine());
-						
-						doubleClick = false;
-						return;
+						Shape shape = it.next();
+						shape.setSelected(false);
+						if (shape.contains(e.getX(), e.getY())) {
+							selected = shape;
+							JOptionPane.showInputDialog(null, "Shape is selected", "ERROR",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
-					startPoint = mouseClick;
-					doubleClick = true;
-					return;
 
-				} else if (tglbtnRectangle.isSelected()) {
-					DlgRectangle dlg = new DlgRectangle();
-					dlg.setRectangle(mouseClick);
-					dlg.seteColor(eColor);
-					dlg.setiColor(iColor);
-					dlg.setVisible(true);
+					if (selected != null) {
+						selected.setSelected(true);
+						{
+							if (tglbtnMod.isSelected() == true) {
+								selected = panel.getSelected();
+								if (selected != null) {
+									if (selected instanceof Point) {
+										Point point = (Point) selected; // downcasting, moramo ga iz Shape pretvoriti u
+																		// Point
+										DlgPoint dlg = new DlgPoint();
+										dlg.setPoint(point);
+										dlg.setModal(true);
+										dlg.setVisible(true);
+									} else if (selected instanceof Line) {
+										Line line = (Line) selected;
+										DlgLine dlg = new DlgLine();
+										dlg.setLine(line);
+										dlg.setModal(true);
+										dlg.setVisible(true);
 
-					if (dlg.getRectangle() != null)
-						panel.add(dlg.getRectangle());
-					return;
-				} else if (tglbtnCircle.isSelected()) {
-					DlgCircle dlg = new DlgCircle();
-					dlg.setCircle(mouseClick);
-					dlg.seteColor(eColor);
-					dlg.setiColor(iColor);
-					dlg.setVisible(true);
+									}
 
-					if (dlg.getCircle() != null)
-						panel.add(dlg.getCircle());
-					return;
-				} else if (tglbtnDonut.isSelected()) {
-					DlgDonut dlg = new DlgDonut();
-					dlg.setDonut(mouseClick);
-					dlg.seteColor(eColor);
-					dlg.setiColor(iColor);
-					dlg.setVisible(true);
+									else if (selected instanceof Circle) {
+										Circle circle = (Circle) selected;
+										DlgAddDelete dlg = new DlgAddDelete();
+										dlg.setCircle(circle);
+										dlg.setVisible(true);
+									} else if (selected instanceof Donut) {
+										Donut donut = (Donut) selected;
+										DlgDonut dlg = new DlgDonut();
+										dlg.setDonut(donut);
+										dlg.setModal(true);
+										dlg.setVisible(true);
+									} else if (selected instanceof Rectangle) {
+										Rectangle rectangle = (Rectangle) selected;
+										DlgRectangle dlg = new DlgRectangle();
+										dlg.setRectangle(rectangle);
+										dlg.seteColor(eColor);
+										dlg.setVisible(true);
+									}
 
-					if (dlg.getDonut() != null)
-						panel.add(dlg.getDonut());
-					return;
+								}
+							}
+						}
+					}
 				}
-			};
+
+			}
 		};
-			}
-			};
-		}
-
-	protected void modification() {
-
-		Shape selected = panel.getSelected();
-		if (selected != null) {
-			if (selected instanceof Point) {
-				Point point = (Point) selected; // downcasting, moramo ga iz Shape pretvoriti u Point
-				DlgPoint dlg = new DlgPoint();
-				dlg.setPoint(point);
-				dlg.setModal(true);
-				dlg.setVisible(true);
-			} else if (selected instanceof Line) {
-				Line line = (Line) selected;
-				DlgLine dlg = new DlgLine();
-				dlg.setLine(line);
-				dlg.setModal(true);
-				dlg.setVisible(true);
-
-			}
-
-			else if (selected instanceof Circle) {
-				Circle circle = (Circle) selected;
-				DlgAddDelete dlg = new DlgAddDelete();
-				dlg.setCircle(circle);
-				dlg.setVisible(true);
-			} else if (selected instanceof Donut) {
-				Donut donut = (Donut) selected;
-				DlgDonut dlg = new DlgDonut();
-				dlg.setDonut(donut);
-				dlg.setModal(true);
-				dlg.setVisible(true);
-			} else if (selected instanceof Rectangle) {
-				Rectangle rectangle = (Rectangle) selected;
-				DlgRectangle dlg = new DlgRectangle();
-				dlg.setRectangle(rectangle);
-				dlg.seteColor(eColor);
-				dlg.setVisible(true);
-			}
-
-		}
-	}
-
-	
-	
-
-	private void drawing() {
-		operation = 1;
-		panel.deselect();
-
-		tglbtnMod.setEnabled(false);
-		tglbtnDel.setEnabled(false);
-		tglbtnSel.setEnabled(false);
-
-		tglbtnPoint.setEnabled(true);
-		tglbtnLine.setEnabled(true);
-		tglbtnRectangle.setEnabled(true);
-		tglbtnCircle.setEnabled(true);
-		tglbtnDonut.setEnabled(true);
-
-	}
-
-	private void modify() {
-		operation = 2;
-
-		tglbtnMod.setEnabled(false);
-		tglbtnDel.setEnabled(false);
-		tglbtnDel.setEnabled(false);
-
-		tglbtnPoint.setEnabled(true);
-		tglbtnLine.setEnabled(true);
-		tglbtnRectangle.setEnabled(true);
-		tglbtnCircle.setEnabled(true);
-		tglbtnDonut.setEnabled(true);
-	}
-
-	private void delete() {
-		operation = 2;
-
-		tglbtnMod.setEnabled(false);
-		tglbtnDel.setEnabled(false);
-		tglbtnDel.setEnabled(false);
-
-		tglbtnPoint.setEnabled(true);
-		tglbtnLine.setEnabled(true);
-		tglbtnRectangle.setEnabled(true);
-		tglbtnCircle.setEnabled(true);
-		tglbtnDonut.setEnabled(true);
-	}
+	};
 
 	public JToggleButton getTglbtnPoint() {
 		return tglbtnPoint;

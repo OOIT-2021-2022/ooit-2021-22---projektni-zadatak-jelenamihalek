@@ -142,18 +142,8 @@ public class DlgLine extends JDialog {
 		panelCenter.add(textEPY, gbc_textEPY);
 		textEPY.setColumns(10);
 		
-		JButton btnColor = new JButton("COLOR");
-		btnColor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				eColor = JColorChooser.showDialog(null, "Choose a color", eColor);
-				if (eColor == null) eColor = Color.BLACK;
-			}
-		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 8;
-		panelCenter.add(btnColor, gbc_btnNewButton);
+	
+		
 		
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
@@ -175,6 +165,8 @@ public class DlgLine extends JDialog {
 									"Error!", JOptionPane.ERROR_MESSAGE);
 							return;
 					}
+						eColor = JColorChooser.showDialog(null, "Choose a color", eColor);
+						if (eColor == null) eColor = Color.BLACK;
 						line=new Line(new Point (x1,y1), new Point (x2,y2)); 
 					    line.seteColor(eColor);
 						setVisible(false);
@@ -278,10 +270,6 @@ public class DlgLine extends JDialog {
 		
 	}
 
-	public void setLine(Point startPoint, Point mouseClick, Color eColor) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	
 }
