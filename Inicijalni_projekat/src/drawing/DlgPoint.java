@@ -33,6 +33,7 @@ public class DlgPoint extends JDialog {
 	private JButton btnEdgeC;
 	private JButton btnInnerC;
 	private Color eColor;
+	protected boolean isOK;
 
 	/**
 	 * Launch the application.
@@ -142,6 +143,7 @@ public class DlgPoint extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				isOK=true;
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");

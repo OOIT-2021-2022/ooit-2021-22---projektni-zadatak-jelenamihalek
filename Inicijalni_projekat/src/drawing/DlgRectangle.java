@@ -34,9 +34,13 @@ public class DlgRectangle extends JDialog {
 	private DlgAddDelete dialog;
 	private Rectangle rectangle;
 	private Color eColor, iColor;
+	
 	/**
 	 * Launch the application.
 	 */
+	protected boolean isOK;
+
+	
 	
 
 	/**
@@ -166,8 +170,7 @@ public class DlgRectangle extends JDialog {
 						eColor = JColorChooser.showDialog(null, "EDGE COLOR", Color.black);
 						iColor = JColorChooser.showDialog(null, "INNER COLOR", Color.white);
 						rectangle=new Rectangle(new Point (x,y),width, height,geteColor(), getiColor()); 
-						rectangle.seteColor(geteColor());
-						rectangle.setiColor(getiColor());
+				
 						dispose();
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Please enter a number!", "Error!",
@@ -179,6 +182,7 @@ public class DlgRectangle extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				isOK=true;
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
@@ -237,9 +241,6 @@ public class DlgRectangle extends JDialog {
 		return rectangle;
 	}
 
-	public void setRectangle() {
-		this.rectangle = rectangle;
-	}
 
 	public void setPoint(Point startPoint) {
 		textUPX.setText("" + rectangle.getUpperLeftPoint().getX());
@@ -254,9 +255,15 @@ public class DlgRectangle extends JDialog {
 		textUPX.setText("" + rectangle.getUpperLeftPoint().getX());
 		textUPY.setText("" + rectangle.getUpperLeftPoint().getY());
 		textW.setText("" + rectangle.getWidth());
+		textH.setText(""+rectangle.getHeight());
 		seteColor(eColor);
 		setiColor(iColor);
 		
+	}
+	public void newRectangle(Rectangle rectangle)
+	{
+		textUPX.setText("" + rectangle.getUpperLeftPoint().getX());
+		textUPY.setText("" + rectangle.getUpperLeftPoint().getY());
 	}
 
 	public void seteColor(Color eColor) {
@@ -283,6 +290,9 @@ public void setRectangle(Point mouseClick) {
 	textUPY.setText("" + mouseClick.getY());
 	
 }
+
+
+
 
 	
 }

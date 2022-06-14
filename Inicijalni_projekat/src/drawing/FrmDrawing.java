@@ -239,35 +239,104 @@ public class FrmDrawing extends JFrame {
 		workButtons.add(tglbtnMod);
 		tglbtnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				Shape selected = panel.getSelected();
 				if (selected != null) {
 					if (selected instanceof Point) {
 						Point point = (Point) selected;
 						DlgPoint dlg = new DlgPoint();
 						dlg.setPoint(point);
-						dlg.setModal(true);
 						dlg.setVisible(true);
+						
+						if (dlg.isOK) {
+							Point changedPoint = new Point();
+							point.setX(Integer.parseInt(dlg.getTextX().getText()));
+							point.setY(Integer.parseInt(dlg.getTextY().getText()));
+							point.setSelected(true);
+							panel.add(dlg.getPoint());
+							repaint();
+							}
+						
 					} else if (selected instanceof Line) {
 						Line line = (Line) selected;
 						DlgLine dlg = new DlgLine();
 						dlg.setLine(line);
 						dlg.setVisible(true);
+						if (dlg.isOK) {
+							Point changedSPoint = new Point();
+							Point changedEPoint=new Point();
+							changedSPoint.setX(Integer.parseInt(dlg.getTextSPX().getText()));
+							changedSPoint.setY(Integer.parseInt(dlg.getTextSPY().getText()));
+							changedEPoint.setX(Integer.parseInt(dlg.getTextEPX().getText()));
+							changedEPoint.setY(Integer.parseInt(dlg.getTextEPY().getText()));
+							line.setSelected(true);
+							panel.add(dlg.getLine());
+							repaint();
+							}
+						
 					} else if (selected instanceof Rectangle) {
 						Rectangle rectangle = (Rectangle) selected;
 						DlgRectangle dlg = new DlgRectangle();
 						dlg.setVisible(true);
 						dlg.setRectangle(rectangle);
+						if (dlg.isOK) {
+							rectangle=dlg.getRectangle();
+							rectangle.getUpperLeftPoint().setX(Integer.parseInt(dlg.getTextUPX().getText()));
+							rectangle.getUpperLeftPoint().setY(Integer.parseInt(dlg.getTextUPY().getText()));
+						    rectangle.setWidth(Integer.parseInt(dlg.getTextW().getText()));
+							rectangle.setHeight(Integer.parseInt(dlg.getTextH().getText()));
+							rectangle.setSelected(true);
+							panel.add(dlg.getRectangle());
+							repaint();
+							}
 					} else if (selected instanceof Circle) {
 						Circle circle = (Circle) selected;
 						DlgCircle dlg = new DlgCircle();
 						dlg.setCircle(circle);
 						dlg.setVisible(true);
+						if (dlg.isOk) {
+							Point changedPoint = new Point();
+							changedPoint.setX(Integer.parseInt(dlg.getTextCX().getText()));
+							changedPoint.setY(Integer.parseInt(dlg.getTextCY().getText()));
+							circle.setCenter(changedPoint);
+							try {
+								circle.setRadius(Integer.parseInt(dlg.getTextR().getText()));
+							} catch (NumberFormatException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							circle.setSelected(true);
+							panel.add(dlg.getCircle());
+							repaint();
+							}
 					} else if (selected instanceof Donut) {
 						Donut donut = (Donut) selected;
 						DlgDonut dlg = new DlgDonut();
 						dlg.setDonut(donut);
 						dlg.setModal(true);
 						dlg.setVisible(true);
+						if (dlg.isOK) {
+							Point center = new Point();
+							center.setX(Integer.parseInt(dlg.getTextCX().getText()));
+							center.setY(Integer.parseInt(dlg.getTextCY().getText()));
+							donut.setCenter(center);
+							try {
+								donut.setRadius(Integer.parseInt(dlg.getTextR().getText()));
+							} catch (NumberFormatException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							donut.setInnerRadius(Integer.parseInt(dlg.getTextIR().getText()));
+							donut.setSelected(true);
+							panel.add(dlg.getDonut());
+							repaint();
+							}
 					} else
 						JOptionPane.showInputDialog(null, "There are no shapes on this panel", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
@@ -383,41 +452,53 @@ public class FrmDrawing extends JFrame {
 				
 						
 						else if (tglbtnMod.isSelected() == true) {
-								
+							
 								if (panel.getSelected() != null) {
 									if (selected instanceof Point) {
 										Point point = (Point) selected; // downcasting, moramo ga iz Shape pretvoriti u
 																		// Point
 										DlgPoint dlg = new DlgPoint();
 										dlg.setPoint(point);
-										dlg.setModal(true);
 										dlg.setVisible(true);
+										if(dlg.getPoint() != null) {
+											panel.add(dlg.getPoint());
+											panel.repaint();
+										}
 									} else if (selected instanceof Line) {
 										Line line = (Line) selected;
 										DlgLine dlg = new DlgLine();
 										dlg.setLine(line);
-										dlg.setModal(true);
 										dlg.setVisible(true);
-
-									}
+										if(dlg.getLine() != null) {
+											panel.add(dlg.getLine());
+											panel.repaint();
+									} }
 
 									else if (selected instanceof Circle) {
 										Circle circle = (Circle) selected;
-										DlgAddDelete dlg = new DlgAddDelete();
+										DlgCircle dlg = new DlgCircle();
 										dlg.setCircle(circle);
 										dlg.setVisible(true);
+										if(dlg.getCircle() != null) {
+											panel.add(dlg.getCircle());
+											panel.repaint(); }
 									} else if (selected instanceof Donut) {
 										Donut donut = (Donut) selected;
 										DlgDonut dlg = new DlgDonut();
 										dlg.setDonut(donut);
-										dlg.setModal(true);
 										dlg.setVisible(true);
+										if(dlg.getDonut() != null) {
+											panel.add(dlg.getDonut());
+											panel.repaint(); }
+										
 									} else if (selected instanceof Rectangle) {
 										Rectangle rectangle = (Rectangle) selected;
 										DlgRectangle dlg = new DlgRectangle();
-										dlg.setRectangle(rectangle);
-										dlg.seteColor(eColor);
+										dlg.newRectangle(rectangle);
 										dlg.setVisible(true);
+										if(dlg.getRectangle() != null) {
+											panel.add(dlg.getRectangle());
+											panel.repaint();
 									}
 
 								}
@@ -428,6 +509,7 @@ public class FrmDrawing extends JFrame {
 					}
 				};
 		}; };
+	}
 	
 	
 

@@ -35,6 +35,8 @@ public class DlgDonut extends JDialog {
 	private Donut donut;
 	private Color eColor, iColor;
 	private Point startPoint;
+	protected boolean isOK;
+	private int radius;
 	
 
 	/**
@@ -181,6 +183,7 @@ public class DlgDonut extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				isOK=true;
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
@@ -246,7 +249,16 @@ public class DlgDonut extends JDialog {
 
 	public int getRadius() {
 		// TODO Auto-generated method stub
-		return donut.getRadius();
+		return radius;
+	}
+
+	
+	public boolean isOK() {
+		return isOK;
+	}
+
+	public void setOK(boolean isOK) {
+		this.isOK = isOK;
 	}
 
 	public int getInnerRadius() {
@@ -276,6 +288,10 @@ public class DlgDonut extends JDialog {
 
 	public void setStartPoint(Point startPoint) {
 		this.startPoint = startPoint;
+	}
+	public void setRadius(int radius)
+	{
+		this.radius=radius;
 	}
 
 	public void setDonut(Donut donut) {

@@ -33,6 +33,7 @@ public class DlgLine extends JDialog {
 	private DlgAddDelete dialog;
 	private Line line;
 	private Color eColor;
+	protected boolean isOK;
 	/**
 	 * Launch the application.
 	 */
@@ -180,6 +181,8 @@ public class DlgLine extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				
+				isOK=true;
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
@@ -251,7 +254,7 @@ public class DlgLine extends JDialog {
 		textSPY.setText("" + line.getStartPoint().getY());
 		textEPX.setText("" + line.getEndPoint().getX());
 		textEPY.setText("" + line.getEndPoint().getY());
-		eColor = line.getColor();
+		eColor = line.geteColor();
 	}
 
 	public Color geteColor() {
@@ -265,6 +268,15 @@ public class DlgLine extends JDialog {
 	public void setLine(Point startPoint, Point mouseClick) {
 		textSPX.setText("" +startPoint.getX());
 		textSPY.setText("" + startPoint.getY());
+		textEPX.setText("" + mouseClick.getX());
+		textEPY.setText("" + mouseClick.getY());
+		
+	}
+
+	public void setLine(Point mouseClick) {
+		// TODO Auto-generated method stub
+		textSPX.setText("" +mouseClick.getX());
+		textSPY.setText("" + mouseClick.getY());
 		textEPX.setText("" + mouseClick.getX());
 		textEPY.setText("" + mouseClick.getY());
 		

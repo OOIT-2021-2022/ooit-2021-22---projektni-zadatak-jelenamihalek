@@ -116,9 +116,5 @@ public class Line extends Shape{
 
 	
 
-	public Color getColor() {
-		// TODO Auto-generated method stub
-		return getColor();
-	}
-
+	
 }

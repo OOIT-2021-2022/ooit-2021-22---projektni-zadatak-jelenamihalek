@@ -194,12 +194,18 @@ public class DlgCircle extends JDialog {
 						setVisible(false);
 					}
 				});
+				
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
-			}
+			
+		}
 		}
 		
 	}
+	
+	
+		
+	
 
 
 	
@@ -235,6 +241,17 @@ public class DlgCircle extends JDialog {
 		eColor = circle.geteColor();
 		iColor = circle.getiColor();
 	}
+	
+	//public void setNewCircle(Point center, int radius, Color eColor, Color iColor) {
+	//	textCX.setText("" + circle.getCenter().getX());
+		//textCY.setText("" + circle.getCenter().getY());
+	//	textR.setText("" + circle.getRadius());
+	//	eColor = circle.geteColor();
+	//	iColor = circle.getiColor()
+	//}
+
+	
+	
 	public void setCircle (Point startPoint)
 	{
 		textCX.setText("" + startPoint.getX());
@@ -275,14 +292,5 @@ public class DlgCircle extends JDialog {
 		return textR;
 	}
 
-
-
-
-
-
-
-	
-	
-	
 	
 }
