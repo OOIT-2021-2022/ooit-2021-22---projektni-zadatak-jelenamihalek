@@ -44,8 +44,7 @@ public class Donut extends Circle {
 
 	public int getInnerRadius() {
 		return innerRadius;
-	}
-//donut je instanca kruga, moramo definisati, downkastikng
+	}                //donut je instanca kruga, moramo definisati, downkastikng
 
 	public void setInnerRadius(int innerRadius) {
 		this.innerRadius = innerRadius;
@@ -79,7 +78,7 @@ public class Donut extends Circle {
 	public void draw (Graphics g)
 	{    g.setColor(geteColor());
 		super.draw(g);
-		g.setColor(geteColor());
+		//g.setColor(geteColor());
 		g.drawOval(center.getX()-innerRadius, center.getY()-innerRadius, innerRadius*2, innerRadius*2);
 		if (isSelected()) {
 			g.setColor(Color.BLUE);
@@ -106,4 +105,6 @@ public class Donut extends Circle {
 		// Center=(x,y), radius= radius
 		return super.toString() + ", innerRadius=" + innerRadius;
 	}
+
+	
 }

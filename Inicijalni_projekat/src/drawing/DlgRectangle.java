@@ -3,6 +3,7 @@ package drawing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import geometry.Line;
+
 import geometry.Point;
 import geometry.Rectangle;
 import stack.DlgAddDelete;
@@ -66,9 +67,11 @@ public class DlgRectangle extends JDialog {
 		gbl_panelCenter.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelCenter.setLayout(gbl_panelCenter);
+		panelCenter.setBackground(new Color(110, 250, 147));
 		
-		JLabel lblTitle = new JLabel("DRAW RECTANGLE");
+		JLabel lblTitle = new JLabel("RECTANGLE");
 		GridBagConstraints gbc_lblTitle = new GridBagConstraints();
+		lblTitle.setFont(new Font("Ariel", Font.BOLD, 18));
 		gbc_lblTitle.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTitle.gridx = 2;
 		gbc_lblTitle.gridy = 1;

@@ -3,8 +3,6 @@ package drawing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Frame;
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -17,24 +15,19 @@ import geometry.Line;
 import geometry.Point;
 import geometry.Rectangle;
 import geometry.Shape;
-import stack.DlgAddDelete;
 import javax.swing.JToggleButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.awt.GridLayout;
+
 
 public class FrmDrawing extends JFrame {
 
@@ -59,10 +52,6 @@ public class FrmDrawing extends JFrame {
 	JToggleButton tglbtnSel;
 	JToggleButton tglbtnDraw;
 	JToggleButton tglbtnMod;
-
-	private final int drawing = 1;
-	private final int delete = 0;
-	private int operation = drawing;
 	boolean doubleClick = false;
 
 	/**
@@ -112,12 +101,11 @@ public class FrmDrawing extends JFrame {
 		gbl_panel.rowWeights = new double[] { Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		
-		
-
 		JPanel panelWest = new JPanel();
 		contentPane.add(panelWest, BorderLayout.WEST);
+		panelWest.setBackground(new Color(250, 230, 150));
 		JPanel panelEast = new JPanel();
+		panelEast.setBackground(new Color(250, 230, 150));
 		contentPane.add(panelEast, BorderLayout.EAST);
 		GridBagLayout gbl_panelEast = new GridBagLayout();
 		gbl_panelEast.columnWidths = new int[] { 0 };
@@ -126,6 +114,7 @@ public class FrmDrawing extends JFrame {
 		gbl_panelEast.rowWeights = new double[] { Double.MIN_VALUE };
 		panelEast.setLayout(gbl_panelEast);
 		JPanel panelCenter = new JPanel();
+		panelCenter.setBackground(new Color(250, 230, 150));
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		GridBagLayout gbl_panelCenter = new GridBagLayout();
 		gbl_panelCenter.columnWidths = new int[] { 87, 10, 0 };
@@ -141,6 +130,7 @@ public class FrmDrawing extends JFrame {
 		gbc_panelNorth.gridy = 0;
 		panelCenter.add(panelNorth, gbc_panelNorth);
 		panelNorth.setBounds(100, 100, 500, 200);
+		panelNorth.setBackground(new Color(250, 230, 150));
 
 		tglbtnPoint = new JToggleButton("POINT");
 		tglbtnPoint.setSelected(true);
@@ -158,6 +148,7 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnLine.gridy = 1;
 		panelCenter.add(tglbtnLine, gbc_tglbtnLine);
 		buttonGroupShapes.add(tglbtnLine);
+
 		tglbtnRectangle = new JToggleButton("RECTANGLE");
 		GridBagConstraints gbc_tglbtnRectangle = new GridBagConstraints();
 		gbc_tglbtnRectangle.insets = new Insets(0, 0, 5, 5);
@@ -190,10 +181,11 @@ public class FrmDrawing extends JFrame {
 		gbl_panelSouth.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panelSouth.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		panelSouth.setLayout(gbl_panelSouth);
+		panelSouth.setBackground(new Color(250, 230, 150));
 
 		tglbtnSel = new JToggleButton("SELECT");
 		workButtons.add(tglbtnSel);
-		
+		tglbtnSel.setBackground(new Color(150, 250, 243));
 
 		GridBagConstraints gbc_tglbtnSel = new GridBagConstraints();
 		gbc_tglbtnSel.insets = new Insets(0, 0, 5, 5);
@@ -202,7 +194,8 @@ public class FrmDrawing extends JFrame {
 		panelSouth.add(tglbtnSel, gbc_tglbtnSel);
 
 		tglbtnDraw = new JToggleButton("DRAW");
-        workButtons.add(tglbtnDraw);
+		workButtons.add(tglbtnDraw);
+		tglbtnDraw.setBackground(new Color(150, 250, 243));
 		GridBagConstraints gbc_tglbtnDraw = new GridBagConstraints();
 		gbc_tglbtnDraw.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnDraw.gridx = 2;
@@ -211,12 +204,16 @@ public class FrmDrawing extends JFrame {
 
 		tglbtnDel = new JToggleButton("DELETE");
 		workButtons.add(tglbtnDel);
+		tglbtnDel.setBackground(new Color(150, 250, 243));
 		tglbtnDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.isEmpty()) {
-					JOptionPane.showInputDialog(null, "There are no shapes!", "WARNING");
+					JOptionPane.showMessageDialog(null, "There are no shapes.", "ERROR!", JOptionPane.ERROR_MESSAGE);
 					return;
-				} else {
+				} else if (panel.getSelected() == -1)
+					JOptionPane.showMessageDialog(null, "Please select your shape", "ERROR!",
+							JOptionPane.ERROR_MESSAGE);
+				else {
 					String[] answer = { "YES", "NO" };
 					{
 						int option = JOptionPane.showOptionDialog(null, "Do you want to delete selected shape?",
@@ -236,116 +233,76 @@ public class FrmDrawing extends JFrame {
 		panelSouth.add(tglbtnDel, gbc_tglbtnDel);
 
 		tglbtnMod = new JToggleButton("MODIFICATION");
-		workButtons.add(tglbtnMod);
 		tglbtnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Shape selected = panel.getSelected();
-				if (selected != null) {
+		
+				int index = panel.getSelected();
+				if (index <0) return;
+				Shape selected = panel .getShape(index);
+	
 					if (selected instanceof Point) {
-						Point point = (Point) selected;
+						Point point = (Point) selected; // downcasting, moramo ga iz Shape pretvoriti u
+														// Point
 						DlgPoint dlg = new DlgPoint();
-						dlg.setPoint(point);
+						dlg.setPoint((Point) selected);
 						dlg.setVisible(true);
-						
-						if (dlg.isOK) {
-							Point changedPoint = new Point();
-							point.setX(Integer.parseInt(dlg.getTextX().getText()));
-							point.setY(Integer.parseInt(dlg.getTextY().getText()));
-							point.setSelected(true);
-							panel.add(dlg.getPoint());
-							repaint();
-							}
-						
+							if(dlg.getPoint() != null) {
+								panel.setShape(index, dlg.getPoint());
+								repaint();
+						}
+
 					} else if (selected instanceof Line) {
 						Line line = (Line) selected;
 						DlgLine dlg = new DlgLine();
 						dlg.setLine(line);
 						dlg.setVisible(true);
-						if (dlg.isOK) {
-							Point changedSPoint = new Point();
-							Point changedEPoint=new Point();
-							changedSPoint.setX(Integer.parseInt(dlg.getTextSPX().getText()));
-							changedSPoint.setY(Integer.parseInt(dlg.getTextSPY().getText()));
-							changedEPoint.setX(Integer.parseInt(dlg.getTextEPX().getText()));
-							changedEPoint.setY(Integer.parseInt(dlg.getTextEPY().getText()));
-							line.setSelected(true);
-							panel.add(dlg.getLine());
-							repaint();
+				
+							if (dlg.getLine() != null) {
+								panel.setShape(index, dlg.getLine());
+								repaint();
 							}
-						
-					} else if (selected instanceof Rectangle) {
-						Rectangle rectangle = (Rectangle) selected;
-						DlgRectangle dlg = new DlgRectangle();
-						dlg.setVisible(true);
-						dlg.setRectangle(rectangle);
-						if (dlg.isOK) {
-							rectangle=dlg.getRectangle();
-							rectangle.getUpperLeftPoint().setX(Integer.parseInt(dlg.getTextUPX().getText()));
-							rectangle.getUpperLeftPoint().setY(Integer.parseInt(dlg.getTextUPY().getText()));
-						    rectangle.setWidth(Integer.parseInt(dlg.getTextW().getText()));
-							rectangle.setHeight(Integer.parseInt(dlg.getTextH().getText()));
-							rectangle.setSelected(true);
-							panel.add(dlg.getRectangle());
-							repaint();
-							}
-					} else if (selected instanceof Circle) {
+						}
+
+					else if (selected instanceof Circle) {
 						Circle circle = (Circle) selected;
 						DlgCircle dlg = new DlgCircle();
 						dlg.setCircle(circle);
 						dlg.setVisible(true);
-						if (dlg.isOk) {
-							Point changedPoint = new Point();
-							changedPoint.setX(Integer.parseInt(dlg.getTextCX().getText()));
-							changedPoint.setY(Integer.parseInt(dlg.getTextCY().getText()));
-							circle.setCenter(changedPoint);
-							try {
-								circle.setRadius(Integer.parseInt(dlg.getTextR().getText()));
-							} catch (NumberFormatException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							} catch (Exception e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
+					
+							if (dlg.getCircle() != null) {
+								panel.setShape(index, dlg.getCircle());
+								repaint();
 							}
-							circle.setSelected(true);
-							panel.add(dlg.getCircle());
-							repaint();
-							}
-					} else if (selected instanceof Donut) {
+						}
+                        else if (selected instanceof Donut) {
 						Donut donut = (Donut) selected;
 						DlgDonut dlg = new DlgDonut();
 						dlg.setDonut(donut);
-						dlg.setModal(true);
 						dlg.setVisible(true);
-						if (dlg.isOK) {
-							Point center = new Point();
-							center.setX(Integer.parseInt(dlg.getTextCX().getText()));
-							center.setY(Integer.parseInt(dlg.getTextCY().getText()));
-							donut.setCenter(center);
-							try {
-								donut.setRadius(Integer.parseInt(dlg.getTextR().getText()));
-							} catch (NumberFormatException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							} catch (Exception e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
+				
+							if (dlg.getDonut() != null) {
+								panel.setShape(index, dlg.getDonut());
+								repaint();
+						}
+
+					} else if (selected instanceof Rectangle) {
+						Rectangle rectangle = (Rectangle) selected;
+						DlgRectangle dlg = new DlgRectangle();
+						dlg.setRectangle(rectangle);
+						dlg.setVisible(true);
+							if (dlg.getRectangle() != null) {
+								panel.setShape(index, dlg.getRectangle());
+								repaint();
 							}
-							donut.setInnerRadius(Integer.parseInt(dlg.getTextIR().getText()));
-							donut.setSelected(true);
-							panel.add(dlg.getDonut());
-							repaint();
-							}
-					} else
-						JOptionPane.showInputDialog(null, "There are no shapes on this panel", "ERROR",
-								JOptionPane.ERROR_MESSAGE);
-				}
-				panel.repaint();
-			}
+						}
+
+					}
+
 
 		});
-
+		workButtons.add(tglbtnMod);
+		tglbtnMod.setBackground(new Color(150, 250, 243));
 		GridBagConstraints gbc_tglbtnMod = new GridBagConstraints();
 		gbc_tglbtnMod.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnMod.gridx = 4;
@@ -434,7 +391,6 @@ public class FrmDrawing extends JFrame {
 					}
 					;
 				}
-				
 
 				else if (tglbtnSel.isSelected() == true) {
 					panel.select(mouseClick);
@@ -448,70 +404,15 @@ public class FrmDrawing extends JFrame {
 							selected = shape;
 							JOptionPane.showInputDialog(null, "Shape is selected", "ERROR",
 									JOptionPane.INFORMATION_MESSAGE);
-						}
-				
 						
-						else if (tglbtnMod.isSelected() == true) {
-							
-								if (panel.getSelected() != null) {
-									if (selected instanceof Point) {
-										Point point = (Point) selected; // downcasting, moramo ga iz Shape pretvoriti u
-																		// Point
-										DlgPoint dlg = new DlgPoint();
-										dlg.setPoint(point);
-										dlg.setVisible(true);
-										if(dlg.getPoint() != null) {
-											panel.add(dlg.getPoint());
-											panel.repaint();
-										}
-									} else if (selected instanceof Line) {
-										Line line = (Line) selected;
-										DlgLine dlg = new DlgLine();
-										dlg.setLine(line);
-										dlg.setVisible(true);
-										if(dlg.getLine() != null) {
-											panel.add(dlg.getLine());
-											panel.repaint();
-									} }
-
-									else if (selected instanceof Circle) {
-										Circle circle = (Circle) selected;
-										DlgCircle dlg = new DlgCircle();
-										dlg.setCircle(circle);
-										dlg.setVisible(true);
-										if(dlg.getCircle() != null) {
-											panel.add(dlg.getCircle());
-											panel.repaint(); }
-									} else if (selected instanceof Donut) {
-										Donut donut = (Donut) selected;
-										DlgDonut dlg = new DlgDonut();
-										dlg.setDonut(donut);
-										dlg.setVisible(true);
-										if(dlg.getDonut() != null) {
-											panel.add(dlg.getDonut());
-											panel.repaint(); }
-										
-									} else if (selected instanceof Rectangle) {
-										Rectangle rectangle = (Rectangle) selected;
-										DlgRectangle dlg = new DlgRectangle();
-										dlg.newRectangle(rectangle);
-										dlg.setVisible(true);
-										if(dlg.getRectangle() != null) {
-											panel.add(dlg.getRectangle());
-											panel.repaint();
-									}
-
-								}
-							
-									
-							}
 						}
+						else if (shape.isSelected()==true) 
+							panel.deselect();
 					}
-				};
-		}; };
-	}
-	
-	
+				}
+			}
+		};
+	};
 
 	public JToggleButton getTglbtnPoint() {
 		return tglbtnPoint;
@@ -603,4 +504,3 @@ public class FrmDrawing extends JFrame {
 		return iColor;
 	}
 }
-

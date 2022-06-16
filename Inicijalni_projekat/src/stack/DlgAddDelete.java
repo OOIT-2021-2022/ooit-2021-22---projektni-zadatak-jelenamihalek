@@ -4,25 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import geometry.Circle;
 import geometry.Point;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
-
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -33,7 +25,6 @@ public class DlgAddDelete extends JDialog {
 	private JTextField textCX;
 	private JTextField textCY;
 	private JTextField textR;
-	 private DlgAddDelete dialog;
 	 private Circle circle;
 	 protected boolean isOk;
 	 private Color iColor,eColor;

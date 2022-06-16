@@ -4,27 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import geometry.Circle;
-import geometry.Line;
 import geometry.Point;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
-
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,7 +26,6 @@ public class DlgCircle extends JDialog {
 	private JTextField textCX;
 	private JTextField textCY;
 	private JTextField textR;
-	 private DlgCircle dialog;
 	 private Circle circle;
 	 protected boolean isOk;
 	 private Color iColor,eColor;
@@ -76,7 +66,7 @@ public class DlgCircle extends JDialog {
 		gbl_panelCenter.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelCenter.setLayout(gbl_panelCenter);
-		panelCenter.setBackground(new Color(230, 230, 250));
+		panelCenter.setBackground(new Color(110, 250, 147));
 		
 		JLabel lblTitle = new JLabel("CIRCLE");
 		GridBagConstraints gbc_lblTitle = new GridBagConstraints();
@@ -152,8 +142,6 @@ public class DlgCircle extends JDialog {
 						try {
 						int x =Integer.parseInt(textCX.getText());
 						int y = Integer.parseInt(textCY.getText());
-						Point center=new Point(x,y);
-						
 						int radius = Integer.parseInt(textR.getText());
 						
 						if(radius<=0) 
@@ -164,7 +152,7 @@ public class DlgCircle extends JDialog {
 						else
 						{ eColor=JColorChooser.showDialog(null, "EDGE COLOR", Color.black);;
 						  iColor=JColorChooser.showDialog(null, "INNER COLOR", Color.white);;
-						  circle=new Circle(new Point (x,y),radius);
+						  circle.setCircle(new Point (x,y),radius);
 						  circle.seteColor(eColor);
 						  circle.setiColor(getiColor());
 						setVisible(false);
@@ -230,9 +218,7 @@ public class DlgCircle extends JDialog {
 		return circle;
 	}
 
-	public void setCircle(Circle circle) {
-		this.circle = circle;
-	}
+	
 
 	public void setCircle(Point center, int radius, Color eColor, Color iColor) {
 		textCX.setText("" + circle.getCenter().getX());
@@ -291,6 +277,12 @@ public class DlgCircle extends JDialog {
 	public JTextField getTextR() {
 		return textR;
 	}
-
+	
+	public void setCircle(Circle circle) {
+		textCX.setText("" + circle.getCenter().getX());
+		textCY.setText("" + circle.getCenter().getY());
+		textR.setText("" + circle.getRadius());
+	}
+	
 	
 }

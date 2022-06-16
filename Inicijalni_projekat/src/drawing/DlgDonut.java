@@ -3,6 +3,7 @@ package drawing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,8 +19,6 @@ import javax.swing.border.EmptyBorder;
 
 import geometry.Donut;
 import geometry.Point;
-import geometry.Rectangle;
-import stack.DlgAddDelete;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,7 +30,6 @@ public class DlgDonut extends JDialog {
 	private JTextField textCY;
 	private JTextField textR;
 	private JTextField textIR;
-	private DlgAddDelete dialog;
 	private Donut donut;
 	private Color eColor, iColor;
 	private Point startPoint;
@@ -68,8 +66,10 @@ public class DlgDonut extends JDialog {
 		gbl_panelCenter.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelCenter.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelCenter.setLayout(gbl_panelCenter);
+		panelCenter.setBackground(new Color(110, 250, 147));
 		
-		JLabel lblTitle = new JLabel("ADD OR DELETE CIRCLE WITH HOLE");
+		JLabel lblTitle = new JLabel("DONUT");
+		lblTitle.setFont(new Font("Ariel", Font.BOLD, 18));
 		GridBagConstraints gbc_lblTitle = new GridBagConstraints();
 		gbc_lblTitle.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTitle.gridx = 2;
@@ -230,13 +230,6 @@ public class DlgDonut extends JDialog {
 		this.textIR = textIR;
 	}
 
-	public DlgAddDelete getDialog() {
-		return dialog;
-	}
-
-	public void setDialog(DlgAddDelete dialog) {
-		this.dialog = dialog;
-	}
 
 	public Donut getDonut() {
 		return donut;

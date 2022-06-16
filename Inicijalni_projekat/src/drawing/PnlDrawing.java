@@ -54,7 +54,21 @@ public class PnlDrawing extends JPanel {
 		
 	}
 
-
+	public Shape getShape(int index) {
+		return shapes.get(index);
+	}
+	
+	public void setShape(int index, Shape shape) {
+		shapes.set(index, shape);
+	}
+	public int getSelected() {
+		for (int i = shapes.size()-1; i >= 0; i--) {
+			if (shapes.get(i).isSelected()) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	public void select(Point clickPoint) {
 		for (int i = shapes.size() - 1; i >= 0; i--) {
 			if (shapes.get(i).contains(clickPoint.getX(), clickPoint.getY())) {
@@ -66,8 +80,11 @@ public class PnlDrawing extends JPanel {
 	}
 
 	public void deselect() {
-		shapes.forEach(shape -> shape.setSelected(false));
+		for(int i=shapes.size()-1;i>=0; i--)
+		{
+		 getShape(i).setSelected(false);
 		repaint();
+		}
 	}
 
 	public void paint(Graphics g) {
@@ -89,26 +106,8 @@ public class PnlDrawing extends JPanel {
 		return shapes.isEmpty();
 	}
 
-	public Shape getShape(int index) {
-		return shapes.get(index);
-	}
+	
 
-	public void setShape(int index, Shape shape) {
-		shapes.set(index, shape);
-	}
-
-	public Shape getSelected() {
-		Iterator<Shape> it = shapes.iterator();
-		while (it.hasNext())
-			{       
-			Shape now=it.next();
-			
-			if (now.isSelected()==true)
-			
-		       return now;}
-		return selected;
-			
-	}
 
 
 	public void setSelected(Shape selected) {
@@ -124,12 +123,6 @@ public class PnlDrawing extends JPanel {
 		return shapes;
 	}
 
-	public Point getStartPoint() {
-		return startPoint;
-	}
-
-	public void setStartPoint(Point startPoint) {
-		this.startPoint = startPoint;
-	}
+	
 
 }

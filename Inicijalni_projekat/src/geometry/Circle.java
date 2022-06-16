@@ -76,6 +76,7 @@ public class Circle extends Shape {
 		} else 
 			return false;
 		}
+	
 	public void fill(Graphics g) {
 		g.setColor(getiColor());
 		g.fillOval(this.center.getX() - this.radius + 1, this.center.getY() - this.radius + 1,
@@ -134,6 +135,13 @@ public class Circle extends Shape {
 	public String toString() {
 		// Center=(x,y), radius= radius
 		return "Center=" + center + ", radius=" + radius;
+	}
+
+	public void setCircle(Point point, int radius) {
+		this.center=point;
+		this.radius=radius;
+		// TODO Auto-generated method stub
+		
 	}
 
 

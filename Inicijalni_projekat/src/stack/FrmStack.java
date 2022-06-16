@@ -14,32 +14,16 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Stack;
 import java.awt.event.ActionEvent;
-import javax.swing.JToolBar;
-import javax.swing.JToggleButton;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-
 import java.awt.GridLayout;
-import java.awt.CardLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
 import geometry.Circle;
-
-import javax.swing.SpringLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
-
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+
 
 public class FrmStack extends JFrame {
 
