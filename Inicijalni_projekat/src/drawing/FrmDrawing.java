@@ -28,7 +28,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 public class FrmDrawing extends JFrame {
 
 	/**
@@ -235,70 +234,63 @@ public class FrmDrawing extends JFrame {
 		tglbtnMod = new JToggleButton("MODIFICATION");
 		tglbtnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-		
+
 				int index = panel.getSelected();
-				if (index <0) return;
-				Shape selected = panel .getShape(index);
-	
-					if (selected instanceof Point) {
-						Point point = (Point) selected; // downcasting, moramo ga iz Shape pretvoriti u
-														// Point
-						DlgPoint dlg = new DlgPoint();
-						dlg.setPoint((Point) selected);
-						dlg.setVisible(true);
-							if(dlg.getPoint() != null) {
-								panel.setShape(index, dlg.getPoint());
-								repaint();
-						}
+				if (index < 0)
+					return;
+				Shape selected = panel.getShape(index);
 
-					} else if (selected instanceof Line) {
-						Line line = (Line) selected;
-						DlgLine dlg = new DlgLine();
-						dlg.setLine(line);
-						dlg.setVisible(true);
-				
-							if (dlg.getLine() != null) {
-								panel.setShape(index, dlg.getLine());
-								repaint();
-							}
-						}
-
-					else if (selected instanceof Circle) {
-						Circle circle = (Circle) selected;
-						DlgCircle dlg = new DlgCircle();
-						dlg.setCircle(circle);
-						dlg.setVisible(true);
-					
-							if (dlg.getCircle() != null) {
-								panel.setShape(index, dlg.getCircle());
-								repaint();
-							}
-						}
-                        else if (selected instanceof Donut) {
-						Donut donut = (Donut) selected;
-						DlgDonut dlg = new DlgDonut();
-						dlg.setDonut(donut);
-						dlg.setVisible(true);
-				
-							if (dlg.getDonut() != null) {
-								panel.setShape(index, dlg.getDonut());
-								repaint();
-						}
-
-					} else if (selected instanceof Rectangle) {
-						Rectangle rectangle = (Rectangle) selected;
-						DlgRectangle dlg = new DlgRectangle();
-						dlg.setRectangle(rectangle);
-						dlg.setVisible(true);
-							if (dlg.getRectangle() != null) {
-								panel.setShape(index, dlg.getRectangle());
-								repaint();
-							}
-						}
-
+				if (selected instanceof Point) {
+					DlgPoint dlg = new DlgPoint();
+					dlg.setPoint((Point) selected);//mogli smo gore downcasting //skracujem kod
+					dlg.setVisible(true);
+					if (dlg.getPoint() != null) {
+						panel.setShape(index, dlg.getPoint());
+						repaint();
 					}
 
+				} else if (selected instanceof Line) {
+					Line line = (Line) selected;
+					DlgLine dlg = new DlgLine();
+					dlg.setLine(line);
+					dlg.setVisible(true);
+
+					if (dlg.getLine() != null) {
+						panel.setShape(index, dlg.getLine());
+						repaint();
+					}
+				}
+
+				else if (selected instanceof Circle) {
+					Circle circle = (Circle) selected;
+					DlgCircle dlg = new DlgCircle();
+					dlg.setCircle(circle);
+					dlg.setVisible(true);
+					if (dlg.getCircle() != null) {
+						panel.setShape(index, dlg.getCircle());
+						repaint();
+					}
+				} else if (selected instanceof Donut) {
+					DlgDonut dlg = new DlgDonut();
+					dlg.setDonut((Donut) selected);
+					dlg.setVisible(true);
+					if (dlg.getDonut() != null) {
+						panel.setShape(index, dlg.getDonut());
+						repaint();
+					}
+
+				} else if (selected instanceof Rectangle) {
+					Rectangle rectangle = (Rectangle) selected;
+					DlgRectangle dlg = new DlgRectangle();
+					dlg.setRectangle(rectangle);
+					dlg.setVisible(true);
+					if (dlg.getRectangle() != null) {
+						panel.setShape(index, dlg.getRectangle());
+						repaint();
+					}
+				}
+
+			}
 
 		});
 		workButtons.add(tglbtnMod);
@@ -404,9 +396,8 @@ public class FrmDrawing extends JFrame {
 							selected = shape;
 							JOptionPane.showInputDialog(null, "Shape is selected", "ERROR",
 									JOptionPane.INFORMATION_MESSAGE);
-						
-						}
-						else if (shape.isSelected()==true) 
+
+						} else if (shape.isSelected() == true)
 							panel.deselect();
 					}
 				}

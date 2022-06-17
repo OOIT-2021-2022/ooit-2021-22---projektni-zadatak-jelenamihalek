@@ -23,6 +23,7 @@ public class PnlDrawing extends JPanel {
 	private FrmDrawing frame;
 	private Point startPoint;
 	private Shape selected;
+	boolean select=false;
 
 	/**
 	 * Create the panel.
@@ -71,13 +72,23 @@ public class PnlDrawing extends JPanel {
 	}
 	public void select(Point clickPoint) {
 		for (int i = shapes.size() - 1; i >= 0; i--) {
-			if (shapes.get(i).contains(clickPoint.getX(), clickPoint.getY())) {
+			if (shapes.get(i).contains(clickPoint.getX(), clickPoint.getY()) && select!=true) {
+				
 				shapes.get(i).setSelected(true);
 				repaint();
+				if(shapes.get(i).isSelected() && select==true)
+				{
+					shapes.get(i).setSelected(false);
+					repaint();
+					select=false;
+				}
+				select=true;
 				return;
 			}
 		}
-	}
+		select=false;
+		}
+//ali ovaj selecttt je strasannnnnnnn
 
 	public void deselect() {
 		for(int i=shapes.size()-1;i>=0; i--)
@@ -107,9 +118,6 @@ public class PnlDrawing extends JPanel {
 	}
 
 	
-
-
-
 	public void setSelected(Shape selected) {
 		this.selected = selected;
 	}
