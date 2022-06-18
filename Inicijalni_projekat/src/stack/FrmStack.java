@@ -53,7 +53,7 @@ public class FrmStack extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmStack() {
-		setTitle("Mihalek Jelena, IT3/2021");
+		setTitle("Jelena Mihalek, IT3/2021");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 470,370);

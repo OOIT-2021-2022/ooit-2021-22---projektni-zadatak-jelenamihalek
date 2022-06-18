@@ -41,7 +41,7 @@ public class DlgAddDelete extends JDialog {
 	public DlgAddDelete() {
 		setModal(true);
 		
-		setTitle("CIRCLE");
+		setTitle("Mihalek Jelena, IT3/2021");
 		setResizable(false);
 		setBounds(100, 100, 450, 350);
 		getContentPane().setLayout(new BorderLayout());
