@@ -241,8 +241,9 @@ public class FrmDrawing extends JFrame {
 				Shape selected = panel.getShape(index);
 
 				if (selected instanceof Point) {
+					Point point = (Point) selected;
 					DlgPoint dlg = new DlgPoint();
-					dlg.setPoint((Point) selected);//mogli smo gore downcasting //skracujem kod
+					dlg.setPoint(point);// mogli sam skratiti kod
 					dlg.setVisible(true);
 					if (dlg.getPoint() != null) {
 						panel.setShape(index, dlg.getPoint());
@@ -259,9 +260,7 @@ public class FrmDrawing extends JFrame {
 						panel.setShape(index, dlg.getLine());
 						repaint();
 					}
-				}
-
-				else if (selected instanceof Circle) {
+				}   else if (selected instanceof Circle) {
 					Circle circle = (Circle) selected;
 					DlgCircle dlg = new DlgCircle();
 					dlg.setCircle(circle);
@@ -271,8 +270,9 @@ public class FrmDrawing extends JFrame {
 						repaint();
 					}
 				} else if (selected instanceof Donut) {
+					Donut donut = (Donut) selected;
 					DlgDonut dlg = new DlgDonut();
-					dlg.setDonut((Donut) selected);
+					dlg.setDonut(donut);
 					dlg.setVisible(true);
 					if (dlg.getDonut() != null) {
 						panel.setShape(index, dlg.getDonut());

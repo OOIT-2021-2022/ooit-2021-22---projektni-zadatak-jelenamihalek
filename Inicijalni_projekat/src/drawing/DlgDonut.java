@@ -35,7 +35,7 @@ public class DlgDonut extends JDialog {
 	private Point startPoint;
 	protected boolean isOK;
 	private int radius;
-	
+	private DlgDonut dlg;
 
 	/**
 	 * Launch the application.
@@ -288,17 +288,13 @@ public class DlgDonut extends JDialog {
 	}
 
 	public void setDonut(Donut donut) {
-		textCX.setText("" + donut.getCenter().getX());
+	    textCX.setText("" + donut.getCenter().getX());
 		textCY.setText("" + donut.getCenter().getY());
 		textR.setText("" + donut.getRadius());
 		textIR.setText("" + donut.getInnerRadius());
 		eColor = donut.geteColor();
 		iColor = donut.getiColor();
 		
-	}
-	public void setPoint(Point startPoint) {
-		textCX.setText("" + donut.getCenter().getX());
-		textCY.setText("" + donut.getCenter().getY());
 	}
 
 	public void setDonut(Point mouseClick) {
