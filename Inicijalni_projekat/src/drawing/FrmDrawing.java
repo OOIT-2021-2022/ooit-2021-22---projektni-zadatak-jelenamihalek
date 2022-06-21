@@ -261,6 +261,20 @@ public class FrmDrawing extends JFrame {
 						panel.setShape(index, dlg.getLine());
 						repaint();
 					}
+				}
+				
+				else if (selected instanceof Donut) {
+					Donut donut = (Donut) selected;
+					DlgDonut dlg = new DlgDonut();
+					dlg.setDonut(donut);
+					dlg.setVisible(true);
+					if (dlg.getDonut() != null) {
+						panel.setShape(index, dlg.getDonut());
+						repaint();
+					}
+					
+
+				
 				}   else if (selected instanceof Circle) {
 					Circle circle = (Circle) selected;
 					DlgCircle dlg = new DlgCircle();
@@ -271,17 +285,7 @@ public class FrmDrawing extends JFrame {
 						repaint();
 					}
 				} 
-				else if (selected instanceof Donut) {
-					Donut donut = (Donut) selected;
-					DlgDonut dlg = new DlgDonut();
-					dlg.setDonut(donut);
-					dlg.setVisible(true);
-					if (dlg.getDonut() != null) {
-						panel.setShape(index, dlg.getDonut());
-						repaint();
-					}
-
-				} else if (selected instanceof Rectangle) {
+				else if (selected instanceof Rectangle) {
 					Rectangle rectangle = (Rectangle) selected;
 					DlgRectangle dlg = new DlgRectangle();
 					dlg.setRectangle(rectangle);
