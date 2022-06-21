@@ -150,7 +150,8 @@ public class DlgCircle extends JDialog {
 							JOptionPane.showMessageDialog(null,  "X and Y must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
 							
 						else
-						{ eColor=JColorChooser.showDialog(null, "EDGE COLOR", Color.black);;
+						{ 
+					 	eColor=JColorChooser.showDialog(null, "EDGE COLOR", Color.black);;
 						  iColor=JColorChooser.showDialog(null, "INNER COLOR", Color.white);;
 						  circle.setCircle(new Point (x,y),radius);
 						  circle.seteColor(eColor);

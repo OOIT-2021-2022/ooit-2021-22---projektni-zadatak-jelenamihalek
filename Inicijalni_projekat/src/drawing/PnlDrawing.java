@@ -48,6 +48,7 @@ public class PnlDrawing extends JPanel {
 		return -1;
 	}
 	public void select(Point clickPoint) {
+		
 		for (int i = shapes.size() - 1; i >= 0; i--) {
 			if (shapes.get(i).contains(clickPoint.getX(), clickPoint.getY()) && select!=true) {
 				

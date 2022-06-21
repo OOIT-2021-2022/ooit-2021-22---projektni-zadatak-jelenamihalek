@@ -327,7 +327,7 @@ public class FrmDrawing extends JFrame {
 						if (tglbtnPoint.isSelected()) {
 							DlgPoint dlg = new DlgPoint();
 							dlg.setPoint(mouseClick);
-							dlg.setColor(eColor);
+						  dlg.setColor(eColor);
 							dlg.setVisible(true);
 							if (dlg.getPoint() != null)
 								panel.add(dlg.getPoint());
@@ -342,7 +342,7 @@ public class FrmDrawing extends JFrame {
 								if (dlg.getLine() != null)
 									panel.add(dlg.getLine());
 
-								doubleClick = false;
+								doubleClick = false;   // da treca tacka bude nova pocetna tacka
 								return;
 							}
 							startPoint = mouseClick;
