@@ -30,12 +30,12 @@ public class DlgDonut extends JDialog {
 	private JTextField textCY;
 	private JTextField textR;
 	private JTextField textIR;
+	private DlgDonut dlg;
 	private Donut donut;
 	private Color eColor, iColor;
 	private Point startPoint;
 	protected boolean isOK;
 	private int radius;
-	private DlgDonut dlg;
 
 	/**
 	 * Launch the application.
@@ -302,4 +302,15 @@ public class DlgDonut extends JDialog {
 		textCX.setText("" + mouseClick.getX());
 		textCY.setText("" + mouseClick.getY());
 	}
+
+	public DlgDonut getDlg() {
+		return dlg;
+	}
+
+	public void setDlg(DlgDonut dlg) {
+		this.dlg = dlg;
+	}
+
+	
+	
 }

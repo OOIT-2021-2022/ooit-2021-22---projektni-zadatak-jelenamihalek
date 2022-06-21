@@ -231,6 +231,7 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnDel.gridy = 0;
 		panelSouth.add(tglbtnDel, gbc_tglbtnDel);
 
+		//-----------------------------------MODIFIKACIJA-------------------------
 		tglbtnMod = new JToggleButton("MODIFICATION");
 		tglbtnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -269,7 +270,8 @@ public class FrmDrawing extends JFrame {
 						panel.setShape(index, dlg.getCircle());
 						repaint();
 					}
-				} else if (selected instanceof Donut) {
+				} 
+				else if (selected instanceof Donut) {
 					Donut donut = (Donut) selected;
 					DlgDonut dlg = new DlgDonut();
 					dlg.setDonut(donut);
@@ -314,7 +316,7 @@ public class FrmDrawing extends JFrame {
 		gbc_btnE.gridy = 1;
 		panelSouth.add(btnE, gbc_btnE);
 	}
-
+//------------------------------BUTTON DRAW I SELECTED----------------------------------------------------------
 	private MouseAdapter panelClickListener() {
 		return new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
