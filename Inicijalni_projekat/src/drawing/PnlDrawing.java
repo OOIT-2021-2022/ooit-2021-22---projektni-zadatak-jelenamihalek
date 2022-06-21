@@ -10,20 +10,15 @@ import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import geometry.Circle;
-import geometry.Donut;
-import geometry.Line;
 import geometry.Point;
-import geometry.Rectangle;
+
 import geometry.Shape;
-import stack.DlgAddDelete;
+
 
 public class PnlDrawing extends JPanel {
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
-	private FrmDrawing frame;
-	private Point startPoint;
-	private Shape selected;
 	boolean select=false;
+	private Shape selected;
 
 	/**
 	 * Create the panel.
@@ -35,25 +30,7 @@ public class PnlDrawing extends JPanel {
 
 	}
 	
-
-	public void DrawingPanel(FrmDrawing frame) {
-		//super.paint(g);
-		setBackground(Color.WHITE);
-		this.frame=frame;
-		addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				thisMouseClicked(e);
-			}
-		});
-	}
 	
-
-	protected void thisMouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		int x=e.getX();
-		int y=e.getY();
-		
-	}
 
 	public Shape getShape(int index) {
 		return shapes.get(index);
@@ -106,6 +83,7 @@ public class PnlDrawing extends JPanel {
 	}
 	// prolazi kroz oblike,
 	// odlazi u shape i ostale klase i trazi u svakoj klasi metodu paint
+	//
 	
 
 	public void add(Shape shape) {
@@ -126,11 +104,12 @@ public class PnlDrawing extends JPanel {
 		shapes.removeIf(shape -> shape.isSelected());
 		repaint();
 	}
+	//kreira se shape,,isptijue se da li je selektovan, ukoliko jeste selektovan uklanja se
 	
 	public ArrayList<Shape> getShapes() {
 		return shapes;
 	}
 
-	
+	//repaint ugradjena poziva paint ponovo
 
 }
