@@ -149,7 +149,7 @@ public class FrmStack extends JFrame {
 							
 							if(dlm.isEmpty()==false)
 							{
-							//dialog.setCircle(dlm.getElementAt(0));//skida poslednji element sa liste
+							
 							int[] fields=new int[3] ;//napravili niz i pokupili podatke iz liste
 							fields[0]=dlm.getElementAt(0).getCenter().getX();
 							fields[1]=dlm.getElementAt(0).getCenter().getY();

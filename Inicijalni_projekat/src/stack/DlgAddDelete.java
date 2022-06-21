@@ -151,7 +151,7 @@ public class DlgAddDelete extends JDialog {
 							JOptionPane.showMessageDialog(null,  "X and Y must be greater than 0 ! Try again.","Error!", JOptionPane.ERROR_MESSAGE);
 							
 						else
-						circle=new Circle(center,radius, eColor,iColor);
+						circle=new Circle(center,radius);
 						setVisible(false);
 						}
 						catch(Exception ex){
