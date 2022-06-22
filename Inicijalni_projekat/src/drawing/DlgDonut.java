@@ -168,8 +168,8 @@ public class DlgDonut extends JDialog {
 						return;
 						}
 
-						eColor = JColorChooser.showDialog(null, "EDGE COLOR", eColor);
-						iColor = JColorChooser.showDialog(null, "INNER COLOR", iColor);
+						eColor = JColorChooser.showDialog(null, "EDGE COLOR", Color.black);
+						iColor = JColorChooser.showDialog(null, "INNER COLOR", Color.lightGray);
 						donut=new Donut(new Point (x,y),radius, innerRadius,eColor, iColor); 
 						setVisible(false);
 					} catch (Exception ex) {

@@ -169,8 +169,7 @@ public class DlgLine extends JDialog {
 									"Error!", JOptionPane.ERROR_MESSAGE);
 							return;
 					}
-						eColor = JColorChooser.showDialog(null, "Choose a color", eColor);
-						if (eColor == null) eColor = Color.BLACK;
+						eColor = JColorChooser.showDialog(null, "Choose a color", Color.black);
 						line=new Line(new Point (x1,y1), new Point (x2,y2)); 
 					    line.seteColor(eColor);
 						setVisible(false);

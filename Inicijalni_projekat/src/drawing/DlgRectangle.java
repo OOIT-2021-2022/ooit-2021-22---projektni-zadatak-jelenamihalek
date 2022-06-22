@@ -171,7 +171,7 @@ public class DlgRectangle extends JDialog {
 						}
 
 						eColor = JColorChooser.showDialog(null, "EDGE COLOR", Color.black);
-						iColor = JColorChooser.showDialog(null, "INNER COLOR", Color.white);
+						iColor = JColorChooser.showDialog(null, "INNER COLOR", Color.lightGray);
 						rectangle=new Rectangle(new Point (x,y),width, height,geteColor(), getiColor()); 
 				
 						dispose();

@@ -77,7 +77,6 @@ public class Line extends Shape{
 	
 	public void draw (Graphics g)
 	{      g.setColor(geteColor());
-		//todo auto-generated method stub
 		g.drawLine(startPoint.getX(),startPoint.getY(),endPoint.getX(),endPoint.getY());
 		//da su x,y protected , ne moye/komnpozicija...
 		if(isSelected()) {

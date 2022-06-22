@@ -129,8 +129,7 @@ public class DlgPoint extends JDialog {
 										"Error!", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
-							eColor =JColorChooser.showDialog(null, "Choose a color", eColor);
-							if (eColor == null) eColor = Color.BLACK; 
+							eColor =JColorChooser.showDialog(null, "Choose a color", Color.black);
 							point = new Point(x,y, eColor);
 							setVisible(false);
 						} catch (Exception ex) {
