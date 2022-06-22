@@ -151,11 +151,10 @@ public class DlgCircle extends JDialog {
 							
 						else
 						{ 
-					 	eColor=JColorChooser.showDialog(null, "EDGE COLOR", Color.black);;
-						  iColor=JColorChooser.showDialog(null, "INNER COLOR", Color.white);;
-						  circle.setCircle(new Point (x,y),radius);
-						  circle.seteColor(eColor);
-						  circle.setiColor(getiColor());
+					 	eColor=JColorChooser.showDialog(null, "EDGE COLOR", eColor);;
+						  iColor=JColorChooser.showDialog(null, "INNER COLOR", iColor);;
+						  circle=new Circle(new Point (x,y),radius, eColor,iColor);
+						 
 						setVisible(false);
 						
 						}}

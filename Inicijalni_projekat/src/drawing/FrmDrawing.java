@@ -200,7 +200,8 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnDraw.gridx = 2;
 		gbc_tglbtnDraw.gridy = 0;
 		panelSouth.add(tglbtnDraw, gbc_tglbtnDraw);
-
+		
+//----------------------------DELETE-------------------------------------
 		tglbtnDel = new JToggleButton("DELETE");
 		workButtons.add(tglbtnDel);
 		tglbtnDel.setBackground(new Color(150, 250, 243));
@@ -320,7 +321,7 @@ public class FrmDrawing extends JFrame {
 		gbc_btnE.gridy = 1;
 		panelSouth.add(btnE, gbc_btnE);
 	}
-//------------------------------BUTTON DRAW I SELECTED----------------------------------------------------------
+//------------------------------BUTTON DRAW I SELECTED--------------------------------------------------------------
 	private MouseAdapter panelClickListener() {
 		return new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -330,7 +331,7 @@ public class FrmDrawing extends JFrame {
 				if (tglbtnDraw.isSelected() == true) {
 					panel.select(mouseClick);
 					{
-						if (tglbtnPoint.isSelected()) {
+						if (tglbtnPoint.isSelected()==true) {
 							DlgPoint dlg = new DlgPoint();
 							dlg.setPoint(mouseClick);
 						  dlg.setColor(eColor);
@@ -339,7 +340,7 @@ public class FrmDrawing extends JFrame {
 								panel.add(dlg.getPoint());
 							return;
 
-						} else if (tglbtnLine.isSelected()) {
+						} else if (tglbtnLine.isSelected()==true) {
 							if (doubleClick == true) {
 								DlgLine dlg = new DlgLine();
 								dlg.setLine(startPoint, mouseClick);
@@ -355,7 +356,7 @@ public class FrmDrawing extends JFrame {
 							doubleClick = true;
 							return;
 
-						} else if (tglbtnRectangle.isSelected()) {
+						} else if (tglbtnRectangle.isSelected()==true) {
 							DlgRectangle dlg = new DlgRectangle();
 							dlg.setRectangle(mouseClick);
 							dlg.seteColor(eColor);
@@ -365,7 +366,8 @@ public class FrmDrawing extends JFrame {
 							if (dlg.getRectangle() != null)
 								panel.add(dlg.getRectangle());
 							return;
-						} else if (tglbtnCircle.isSelected()) {
+						} 
+						else if (tglbtnCircle.isSelected()==true) {
 							DlgCircle dlg = new DlgCircle();
 							dlg.setCircle(mouseClick);
 							dlg.seteColor(eColor);
@@ -375,7 +377,8 @@ public class FrmDrawing extends JFrame {
 							if (dlg.getCircle() != null)
 								panel.add(dlg.getCircle());
 							return;
-						} else if (tglbtnDonut.isSelected()) {
+							
+						}	else if (tglbtnDonut.isSelected()==true) {
 							DlgDonut dlg = new DlgDonut();
 							dlg.setDonut(mouseClick);
 							dlg.seteColor(eColor);
@@ -385,23 +388,23 @@ public class FrmDrawing extends JFrame {
 							if (dlg.getDonut() != null)
 								panel.add(dlg.getDonut());
 							return;
+							
 						}
+						panel.deselect();
+						
 					}
 					;
 				}
 
 				else if (tglbtnSel.isSelected() == true) {
 					panel.select(mouseClick);
-					Shape selected = null;
 					Iterator<Shape> it = shapes.iterator();
 					while (it.hasNext()) {
-
 						Shape shape = it.next();
 						shape.setSelected(false);
 						if (shape.contains(e.getX(), e.getY())) {
-							selected = shape;
-							JOptionPane.showInputDialog(null, "Shape is selected", "ERROR",
-									JOptionPane.INFORMATION_MESSAGE);
+							
+							shape.setSelected(true);
 
 						} else if (shape.isSelected() == true)
 							panel.deselect();

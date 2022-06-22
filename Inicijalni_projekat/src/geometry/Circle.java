@@ -85,7 +85,6 @@ public class Circle extends Shape {
 
 	public void draw (Graphics g)
 	{
-		//todo auto-generated method stub
 		g.setColor(geteColor());
 		g.drawOval(center.getX()-radius, center.getY()-radius, radius*2,radius*2);
 		this.fill(g);

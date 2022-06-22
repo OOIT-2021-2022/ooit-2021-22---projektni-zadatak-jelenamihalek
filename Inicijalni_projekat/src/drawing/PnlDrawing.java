@@ -2,12 +2,8 @@ package drawing;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import geometry.Point;
@@ -30,8 +26,6 @@ public class PnlDrawing extends JPanel {
 
 	}
 	
-	
-
 	public Shape getShape(int index) {
 		return shapes.get(index);
 	}
