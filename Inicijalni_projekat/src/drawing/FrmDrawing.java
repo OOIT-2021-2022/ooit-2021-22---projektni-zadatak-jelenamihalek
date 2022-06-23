@@ -102,9 +102,9 @@ public class FrmDrawing extends JFrame {
 
 		JPanel panelWest = new JPanel();
 		contentPane.add(panelWest, BorderLayout.WEST);
-		panelWest.setBackground(new Color(250, 230, 150));
+		panelWest.setBackground(Color.PINK);
 		JPanel panelEast = new JPanel();
-		panelEast.setBackground(new Color(250, 230, 150));
+		panelEast.setBackground(Color.pink);
 		contentPane.add(panelEast, BorderLayout.EAST);
 		GridBagLayout gbl_panelEast = new GridBagLayout();
 		gbl_panelEast.columnWidths = new int[] { 0 };
@@ -113,7 +113,7 @@ public class FrmDrawing extends JFrame {
 		gbl_panelEast.rowWeights = new double[] { Double.MIN_VALUE };
 		panelEast.setLayout(gbl_panelEast);
 		JPanel panelCenter = new JPanel();
-		panelCenter.setBackground(new Color(250, 230, 150));
+		panelCenter.setBackground(Color.pink);
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		GridBagLayout gbl_panelCenter = new GridBagLayout();
 		gbl_panelCenter.columnWidths = new int[] { 87, 10, 0 };
@@ -129,7 +129,7 @@ public class FrmDrawing extends JFrame {
 		gbc_panelNorth.gridy = 0;
 		panelCenter.add(panelNorth, gbc_panelNorth);
 		panelNorth.setBounds(100, 100, 500, 200);
-		panelNorth.setBackground(new Color(250, 230, 150));
+		panelNorth.setBackground(Color.pink);
 
 		tglbtnPoint = new JToggleButton("POINT");
 		tglbtnPoint.setSelected(true);
@@ -184,7 +184,7 @@ public class FrmDrawing extends JFrame {
 
 		tglbtnSel = new JToggleButton("SELECT");
 		workButtons.add(tglbtnSel);
-		tglbtnSel.setBackground(new Color(150, 250, 243));
+		
 
 		GridBagConstraints gbc_tglbtnSel = new GridBagConstraints();
 		gbc_tglbtnSel.insets = new Insets(0, 0, 5, 5);
@@ -194,7 +194,6 @@ public class FrmDrawing extends JFrame {
 
 		tglbtnDraw = new JToggleButton("DRAW");
 		workButtons.add(tglbtnDraw);
-		tglbtnDraw.setBackground(new Color(150, 250, 243));
 		GridBagConstraints gbc_tglbtnDraw = new GridBagConstraints();
 		gbc_tglbtnDraw.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnDraw.gridx = 2;
@@ -204,7 +203,6 @@ public class FrmDrawing extends JFrame {
 //----------------------------DELETE-------------------------------------
 		tglbtnDel = new JToggleButton("DELETE");
 		workButtons.add(tglbtnDel);
-		tglbtnDel.setBackground(new Color(150, 250, 243));
 		tglbtnDel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.isEmpty()) {
@@ -301,7 +299,6 @@ public class FrmDrawing extends JFrame {
 
 		});
 		workButtons.add(tglbtnMod);
-		tglbtnMod.setBackground(new Color(150, 250, 243));
 		GridBagConstraints gbc_tglbtnMod = new GridBagConstraints();
 		gbc_tglbtnMod.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnMod.gridx = 4;
