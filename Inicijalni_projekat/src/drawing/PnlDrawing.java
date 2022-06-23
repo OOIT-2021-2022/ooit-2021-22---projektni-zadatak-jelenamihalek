@@ -65,7 +65,7 @@ public class PnlDrawing extends JPanel {
 	public void deselect() {
 		for(int i=shapes.size()-1;i>=0; i--)
 		{
-		 getShape(i).setSelected(false);
+		 getShape(i).setSelected(false); //nasa metoda getShap, indeks i
 		repaint();
 		}
 	}
