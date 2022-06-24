@@ -60,7 +60,7 @@ public class PnlDrawing extends JPanel {
 		}
 		select=false;
 		}
-//ali ovaj selecttt je strasannnnnnnn
+
 
 	public void deselect() {
 		for(int i=shapes.size()-1;i>=0; i--)
